@@ -1,0 +1,19 @@
+:root {
+  --gold: #C4A55A;
+  --gold-light: #E8D5A3;
+  --gold-dim: #8A7240;
+  --bg: #0E0F13;
+  --bg2: #14161C;
+  --bg3: #1C1F28;
+  --bg4: #242835;
+  --text: #F0EDE6;
+  --text2: #A8A499;
+  --text3: #6B6760;
+  --border: rgba(196,165,90,0.15);
+  --border2: rgba(196,165,90,0.08);
+  --red: #E05A5A;
+  --green: #5AB88A;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}

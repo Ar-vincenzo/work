@@ -1,10 +1,135 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<title>Vincenzo — Work</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vincenzo Ariete</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/core/variables.css">
+  <link rel="stylesheet" href="css/core/base.css">
+  <link rel="stylesheet" href="css/core/layout.css">
+  <link rel="stylesheet" href="css/core/components.css">
+  <link rel="stylesheet" href="css/pages/home/home.css">
 </head>
 <body>
-<p>Coming soon.</p>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">Vincenzo Ariete</a>
+  <ul class="nav-links">
+    <li><a href="lavori/">Lavori</a></li>
+    <li><a href="iari/">Analisi IARI</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<nav class="nav-mobile" id="navMobile">
+  <a href="/" class="nav-mobile-top" id="navMobileTop">Vincenzo Ariete</a>
+  <a href="lavori/">Lavori</a>
+  <a href="iari/">Analisi IARI</a>
+  <a href="#contatti">Contatti</a>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section id="about" class="home-hero fade-in">
+    <p class="section-label">Portfolio</p>
+    <h1 class="home-name">Vincenzo Ariete<span class="home-dot">.</span></h1>
+    <p class="home-role">Junior analyst · Economia internazionale e geopolitica</p>
+    <p class="home-bio">Lavoro come analista junior presso IARI, dove mi occupo di economia internazionale con focus su politiche monetarie e dinamiche geopolitiche. Ho una formazione ibrida — laurea in Scienze Economiche e background in web design — che mi porta a costruire analisi complete di strumenti di comunicazione visiva.</p>
+  </section>
+
+  <!-- LAVORI -->
+  <section id="lavori" class="fade-in">
+    <div class="home-section-header">
+      <div>
+        <p class="section-label">Lavori</p>
+        <h2 class="section-title">Progetti recenti</h2>
+      </div>
+      <a href="lavori/" class="home-section-link">Tutti i lavori →</a>
+    </div>
+
+    <div class="home-work-grid">
+
+      <a href="argentina/" class="home-work-card">
+        <div class="home-work-card-inner">
+          <div class="home-work-meta">
+            <span class="home-work-tag">Dashboard · Report economico</span>
+            <span class="home-work-year">2024–2025</span>
+          </div>
+          <h3 class="home-work-title">Argentina — Il programma Milei</h3>
+          <p class="home-work-desc">Analisi delle politiche economiche del governo Milei: consolidamento fiscale, politica monetaria, dinamiche del debito e impatto sociale.</p>
+        </div>
+        <span class="home-work-arrow">→</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- IARI -->
+  <section id="iari-preview" class="fade-in">
+    <div class="home-section-header">
+      <div>
+        <p class="section-label">Pubblicazioni</p>
+        <h2 class="section-title">Ultime analisi IARI</h2>
+      </div>
+      <a href="iari/" class="home-section-link">Tutte le analisi →</a>
+    </div>
+
+    <div class="home-iari-list">
+
+      <a href="https://iari.site/2026/03/21/dazi-usa-la-sezione-122-come-strumento-di-coercizione-negoziale/" target="_blank" rel="noopener" class="home-iari-item">
+        <div class="home-iari-item-left">
+          <span class="home-iari-topic">Economia internazionale</span>
+          <span class="home-iari-title">Dazi USA: la Sezione 122 come strumento di coercizione negoziale</span>
+        </div>
+        <div class="home-iari-item-right">
+          <span class="home-iari-date">21 Mar 2026</span>
+          <span class="home-iari-arrow">↗</span>
+        </div>
+      </a>
+
+      <a href="iari/" class="home-iari-item home-iari-item--placeholder">
+        <div class="home-iari-item-left">
+          <span class="home-iari-topic">Geopolitica · America Latina</span>
+          <span class="home-iari-title">Argentina contesa: litio, riserve e il doppio legame geopolitico</span>
+        </div>
+        <div class="home-iari-item-right">
+          <span class="home-iari-date">In arrivo</span>
+          <span class="home-iari-arrow">↗</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section id="contatti" class="fade-in">
+    <p class="section-label">Contatti</p>
+    <h2 class="section-title">Get in touch</h2>
+    <p class="section-body">Per collaborazioni, domande o semplicemente per scrivere, puoi contattarmi via email.</p>
+    <div class="home-contact-list">
+      <a href="mailto:vincenzo.ariete@iari.site" class="home-contact-item">
+        <span class="home-contact-label">Email</span>
+        <span class="home-contact-val">vincenzoa.20.va@gmail.com ↗</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="footer-name">Vincenzo Ariete</span>
+  <span class="footer-sources">aggiornato · Q1 2026</span>
+</footer>
+
+<script src="js/core/animations.js"></script>
+
 </body>
 </html>

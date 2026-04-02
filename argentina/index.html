@@ -6,551 +6,19 @@
 <title>Argentina — Programma Milei 2024–2025</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<style>
-:root {
-  --gold: #C4A55A;
-  --gold-light: #E8D5A3;
-  --gold-dim: #8A7240;
-  --bg: #0E0F13;
-  --bg2: #14161C;
-  --bg3: #1C1F28;
-  --bg4: #242835;
-  --text: #F0EDE6;
-  --text2: #A8A499;
-  --text3: #6B6760;
-  --border: rgba(196,165,90,0.15);
-  --border2: rgba(196,165,90,0.08);
-  --red: #E05A5A;
-  --green: #5AB88A;
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'DM Mono', monospace;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* NAV */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(14,15,19,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 0.5px solid var(--border);
-  padding: 0 2rem;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-logo {
-  font-family: var(--font-display);
-  font-size: 15px;
-  color: var(--gold);
-  text-decoration: none;
-  letter-spacing: 0.02em;
-}
-
-.nav-links {
-  display: flex;
-  gap: 0;
-  align-items: center;
-  list-style: none;
-}
-
-.nav-links a {
-  color: var(--text3);
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0 14px;
-  transition: color 0.2s;
-}
-
-.nav-links a:hover { color: var(--gold); }
-
-.nav-links .nav-iari {
-  color: var(--gold-dim);
-  border: 0.5px solid var(--border);
-  border-radius: 3px;
-  padding: 5px 12px;
-  margin-left: 8px;
-  font-size: 11px;
-}
-
-.nav-links .nav-iari:hover {
-  color: var(--gold);
-  border-color: var(--gold-dim);
-}
-
-/* MAIN */
-main { padding-top: 56px; }
-
-/* SECTIONS */
-section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 72px 2rem;
-}
-
-section + section {
-  border-top: 0.5px solid var(--border2);
-}
-
-.section-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold-dim);
-  margin-bottom: 10px;
-}
-
-.section-title {
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 400;
-  color: var(--text);
-  margin-bottom: 20px;
-  line-height: 1.3;
-}
-
-.section-body {
-  color: var(--text2);
-  font-size: 14px;
-  line-height: 1.8;
-  max-width: 680px;
-}
-
-.section-body p + p { margin-top: 14px; }
-
-/* HERO */
-#hero {
-  max-width: 100%;
-  padding: 80px 2rem 64px;
-  border-bottom: 0.5px solid var(--border2);
-}
-
-.hero-inner {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.hero-eyebrow {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 16px;
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(32px, 5vw, 52px);
-  font-weight: 400;
-  line-height: 1.15;
-  color: var(--text);
-  margin-bottom: 16px;
-  max-width: 680px;
-}
-
-.hero-sub {
-  color: var(--text2);
-  font-size: 15px;
-  max-width: 560px;
-  margin-bottom: 48px;
-  line-height: 1.7;
-}
-
-/* KPI GRID */
-.kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1px;
-  background: var(--border2);
-  border: 0.5px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-  max-width: 760px;
-}
-
-.kpi-card {
-  background: var(--bg2);
-  padding: 20px 24px;
-}
-
-.kpi-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 8px;
-}
-
-.kpi-value {
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 400;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-
-.kpi-delta {
-  font-size: 11px;
-  color: var(--text3);
-  font-family: var(--font-mono);
-}
-
-.kpi-delta.pos { color: var(--green); }
-.kpi-delta.neg { color: var(--red); }
-
-/* CHART CONTAINER */
-.chart-wrap {
-  background: var(--bg2);
-  border: 0.5px solid var(--border);
-  border-radius: 8px;
-  padding: 24px;
-  margin-top: 32px;
-}
-
-.chart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 20px;
-}
-
-.chart-title {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text);
-}
-
-.chart-source {
-  font-size: 10px;
-  color: var(--text3);
-  font-family: var(--font-mono);
-}
-
-.chart-container {
-  position: relative;
-  height: 220px;
-}
-
-/* DATA TABLE */
-.data-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 0.5px solid var(--border2);
-  font-size: 13px;
-}
-
-.data-row:last-child { border-bottom: none; }
-.data-row-label { color: var(--text2); }
-.data-row-val { font-family: var(--font-mono); color: var(--text); }
-.data-row-val.pos { color: var(--green); }
-.data-row-val.neg { color: var(--red); }
-
-/* TIMELINE */
-.timeline {
-  margin-top: 32px;
-  position: relative;
-  padding-left: 20px;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 6px;
-  bottom: 6px;
-  width: 0.5px;
-  background: var(--border);
-}
-
-.tl-item {
-  position: relative;
-  margin-bottom: 24px;
-}
-
-.tl-item::before {
-  content: '';
-  position: absolute;
-  left: -23px;
-  top: 6px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--gold-dim);
-}
-
-.tl-year {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--gold-dim);
-  margin-bottom: 3px;
-}
-
-.tl-text {
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.6;
-}
-
-/* CARDS GRID */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.info-card {
-  background: var(--bg2);
-  border: 0.5px solid var(--border);
-  border-radius: 8px;
-  padding: 18px 20px;
-}
-
-.info-card-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold-dim);
-  margin-bottom: 8px;
-}
-
-.info-card-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-
-.info-card-body {
-  font-size: 12px;
-  color: var(--text2);
-  line-height: 1.6;
-}
-
-/* RATING CARDS */
-.rating-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.rating-card {
-  background: var(--bg2);
-  border: 0.5px solid var(--border);
-  border-radius: 8px;
-  padding: 18px 20px;
-  text-align: center;
-}
-
-.rating-agency {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 10px;
-}
-
-.rating-now {
-  font-family: var(--font-display);
-  font-size: 26px;
-  color: var(--gold);
-  margin-bottom: 4px;
-}
-
-.rating-from {
-  font-size: 11px;
-  color: var(--text3);
-  font-family: var(--font-mono);
-}
-
-/* HIGHLIGHT BOX */
-.highlight-box {
-  background: var(--bg3);
-  border-left: 2px solid var(--gold-dim);
-  border-radius: 0 6px 6px 0;
-  padding: 14px 18px;
-  margin-top: 20px;
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.7;
-}
-
-/* CONCLUSIONS */
-.conclusion-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.conclusion-card {
-  background: var(--bg2);
-  border: 0.5px solid var(--border);
-  border-radius: 8px;
-  padding: 18px 20px;
-}
-
-.conclusion-card.risk {
-  border-color: rgba(224,90,90,0.2);
-}
-
-.conclusion-card-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 10px;
-}
-
-.conclusion-card.risk .conclusion-card-label { color: rgba(224,90,90,0.6); }
-
-.conclusion-item {
-  font-size: 13px;
-  color: var(--text2);
-  padding: 5px 0;
-  border-bottom: 0.5px solid var(--border2);
-  line-height: 1.5;
-}
-
-.conclusion-item:last-child { border-bottom: none; }
-
-/* IARI SECTION */
-.iari-box {
-  background: var(--bg2);
-  border: 0.5px solid var(--border);
-  border-radius: 8px;
-  padding: 28px 32px;
-  margin-top: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.iari-text-block { flex: 1; }
-
-.iari-badge {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold-dim);
-  background: rgba(196,165,90,0.08);
-  border: 0.5px solid var(--border);
-  border-radius: 3px;
-  padding: 3px 8px;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-.iari-title {
-  font-family: var(--font-display);
-  font-size: 18px;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-
-.iari-body {
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.6;
-}
-
-.iari-link {
-  display: inline-block;
-  margin-top: 14px;
-  font-size: 12px;
-  color: var(--gold-dim);
-  text-decoration: none;
-  border: 0.5px solid var(--border);
-  border-radius: 3px;
-  padding: 6px 14px;
-  transition: color 0.2s, border-color 0.2s;
-}
-
-.iari-link:hover { color: var(--gold); border-color: var(--gold-dim); }
-
-/* FOOTER */
-footer {
-  border-top: 0.5px solid var(--border2);
-  padding: 32px 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.footer-name {
-  font-family: var(--font-display);
-  font-size: 14px;
-  color: var(--gold-dim);
-}
-
-.footer-sources {
-  font-size: 11px;
-  color: var(--text3);
-  font-family: var(--font-mono);
-  text-align: right;
-  line-height: 1.8;
-}
-
-/* SCROLL FADE IN */
-.fade-in {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (max-width: 600px) {
-  .nav-links { display: none; }
-  .kpi-grid { grid-template-columns: 1fr 1fr; }
-  .rating-grid { grid-template-columns: 1fr; }
-  .conclusion-grid { grid-template-columns: 1fr; }
-  .iari-box { flex-direction: column; }
-  footer { flex-direction: column; gap: 12px; text-align: center; }
-  .footer-sources { text-align: center; }
-}
-</style>
+<link rel="stylesheet" href="../css/core/variables.css">
+<link rel="stylesheet" href="../css/core/base.css">
+<link rel="stylesheet" href="../css/core/layout.css">
+<link rel="stylesheet" href="../css/core/components.css">
+<link rel="stylesheet" href="../css/pages/argentina/argentina.css">
 </head>
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">Vincenzo</a>
+  <a href="../" class="nav-logo">Vincenzo Ariete</a>
   <ul class="nav-links">
     <li><a href="#eredita">Contesto</a></li>
+    <li><a href="#stabilizzazione">Programma</a></li>
     <li><a href="#fiscale">Fiscale</a></li>
     <li><a href="#monetaria">Monetaria</a></li>
     <li><a href="#debito">Debito</a></li>
@@ -558,7 +26,24 @@ footer {
     <li><a href="#rating">Rating</a></li>
     <li><a href="#iari" class="nav-iari">Analisi IARI ↗</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<div class="nav-mobile" id="navMobile">
+  <a href="#" class="nav-mobile-top" id="navMobileTop">↑ Inizio</a>
+  <a href="#eredita">Contesto</a>
+  <a href="#stabilizzazione">Programma</a>
+  <a href="#fiscale">Fiscale</a>
+  <a href="#monetaria">Monetaria</a>
+  <a href="#debito">Debito</a>
+  <a href="#sociale">Sociale</a>
+  <a href="#rating">Rating</a>
+  <a href="#iari" class="nav-iari">Analisi IARI ↗</a>
+</div>
 
 <main>
 
@@ -566,30 +51,50 @@ footer {
 <div id="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow">Report Economico · Argentina 2024–2025</div>
-    <h1 class="hero-title">Il programma Milei: stabilizzazione e rischi strutturali</h1>
-    <p class="hero-sub">Un'analisi dell'aggiustamento macroeconomico argentino — dai risultati documentati alle fragilità residue. Dati verificati da INDEC, FMI e Banca Mondiale.</p>
+    <h1 class="hero-title">Il programma Milei:<br>stabilizzazione e rischi strutturali</h1>
+    <p class="hero-sub">L'Argentina del 2024–2025 tra shock therapy e fragilità residue: un'analisi dei principali indicatori macroeconomici, sociali e finanziari del programma di stabilizzazione. Dati verificati da INDEC, FMI, Banca Mondiale, BCRA e Ministerio de Economía Argentina.</p>
     <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-label">Inflazione dic. 2024</div>
-        <div class="kpi-value">2.7%</div>
-        <div class="kpi-delta neg">↓ da 25.5% · dic 2023</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Saldo primario 2024</div>
-        <div class="kpi-value">+1.78%</div>
-        <div class="kpi-delta pos">↑ primo surplus in 14 anni</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Povertà · I sem. 2025</div>
-        <div class="kpi-value">31.6%</div>
-        <div class="kpi-delta pos">↓ da 52.9% · I sem. 2024</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">EMBI · mar. 2026</div>
-        <div class="kpi-value">311 bp</div>
-        <div class="kpi-delta pos">↓ da 1907 bp · gen. 2024</div>
-      </div>
-    </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Inflazione mensile · dic 2025</div>
+    <div class="kpi-value">2.8%</div>
+    <div class="kpi-delta">↓ da 25.5% · dic 2023</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Saldo primario 2024</div>
+    <div class="kpi-value">+1.78%</div>
+    <div class="kpi-delta">↑ primo surplus in 14 anni</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Povertà · II sem. 2025</div>
+    <div class="kpi-value">28.2%</div>
+    <div class="kpi-delta">↓ da 52.9% · I sem. 2024</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">EMBI · dic. 2025</div>
+    <div class="kpi-value">561 bp</div>
+    <div class="kpi-delta">↓ da 1964 bp · gen. 2024</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Debito/PIL 2025</div>
+    <div class="kpi-value">78.8%</div>
+    <div class="kpi-delta">↓ da 155.4% · 2023</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Tasso occupazione · Q4 2025</div>
+    <div class="kpi-value">48.6%</div>
+    <div class="kpi-delta">stabile · 2024–2025</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Riserve lorde · dic. 2025</div>
+    <div class="kpi-value">$38 mld</div>
+    <div class="kpi-delta">↑ da $23 mld · dic. 2023</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">PIL reale 2025</div>
+    <div class="kpi-value">+4.5%</div>
+    <div class="kpi-delta">↑ da -1.6% · 2024</div>
+  </div>
+</div>
   </div>
 </div>
 
@@ -598,9 +103,47 @@ footer {
   <div class="section-label">Sezioni 1 — 2</div>
   <h2 class="section-title">L'eredità macroeconomica</h2>
   <div class="section-body">
-    <p>I problemi dell'Argentina non possono essere attribuiti a un singolo governo: hanno un'origine strutturale più profonda. Dal 2009 al 2025 il paese ha registrato deficit di bilancio in modo continuativo, con il rapporto deficit/PIL superiore al 3% a partire dal 2012. Il debito pubblico, sceso al 40% del PIL nel 2011, è tornato al 155% entro fine 2023.</p>
-    <p>Il meccanismo centrale è la monetizzazione del debito: la Banca Centrale, priva di indipendenza reale, finanziava il deficit emettendo nuova moneta. Il risultato è una spirale deficit–moneta–inflazione che si è autoalimentata per decenni. A fine 2023 l'inflazione annua aveva superato il 211%, le riserve nette erano negative e il paese era sull'orlo del default.</p>
+    <p>I problemi dell’Argentina non hanno origine recente, e non possono essere attribuiti ad un singolo governo. Dal 2009 al 2023 il paese ha registrato deficit di bilancio in modo continuativo, con il rapporto deficit/PIL costantemente superiore al 3% a partire dal 2012. Il debito pubblico, sceso al 40% del PIL nel 2011, ha raggiunto il picco del 155% alla fine del 2023.</p>
+    <p>Il meccanismo che ha portato l’Argentina in condizioni economiche critiche è la monetizzazione del debito. La Banca Centrale, priva di indipendenza reale, finanziava il deficit emettendo nuova moneta, alimentando una spirale di deficit-moneta-inflazione per decenni. A fine 2023 l’inflazione annua aveva raggiunto il 211%, le riserve nette erano negative ed il paese era sull’orlo del default.</p>
+    <p>Il governo Fernandez (2019-2023) ha rappresentato il culmine di questa crisi: deficit fiscale oltre il 5% del PIL, ulteriore deficit quasi-fiscale del 10% tramite le Leliq, debito pubblico del 155%. È in questo contesto che interviene il governo Milei, avviando un programma basato sulla shock therapy per ripristinare i conti pubblici.</p>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Approfondisci il contesto storico
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p>Prima il governo di Nestor Kirchner (2003-2007), poi il governo di Cristina Fernández (2007-2015), hanno alimentato la spirale di deficit-debito-inflazione, che congiuntamente a tasse sull’esportazione per il settore agro-alimentare e l’introduzione del cepo cambiario nel 2011, hanno reso insostenibile il modello e la ripresa economica del paese.</p>
+        <p>Successivamente, il governo Macri (2015-2019) ha tentato di stabilizzare l’economia e frenare la crisi finanziaria firmando un accordo record con il FMI per 57 miliardi di dollari. Il finanziamento era stato concesso con lo scopo di ridurre il deficit fiscale, ma il programma non raggiunse gli obiettivi prefissati aggravando ulteriormente la crisi economica: il peso si svalutò rapidamente nel 2018, rendendo insostenibile il debito in dollari e costringendo ad ulteriori emissioni.</p>
+        <p>La situazione si è acuita con il governo Fernández (2019-2023), il quale ha emesso oltre 100 miliardi di dollari in obbligazioni denominate in pesos con il finanziamento monetario della Banca Centrale, alimentando ulteriormente il deficit. Il governo Fernández, oltre ad aver accumulato deficit fiscale per oltre il 5% del PIL, aveva generato un ulteriore deficit stimato al 10% del PIL tramite la Banca Centrale, la quale emetteva titoli a breve termine ad alto rendimento, le Leliq, per sterilizzare la liquidità in eccesso. Ciò ha contribuito ad un accumulo insostenibile del debito pubblico, che al momento dell’insediamento del governo Milei rappresentava una delle principali problematiche da fronteggiare.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Concetto chiave: meccanismo della monetizzazione
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p>La Banca Centrale argentina, priva di indipendenza reale, è da sempre stata subordinata al potere politico. Ciò ha permesso al governo di attuare una politica di monetizzazione del debito, ossia finanziare il deficit fiscale e il debito pubblico, con l'emissione di nuova moneta, con conseguente acquisto da parte della Banca Centrale dei bond governativi. </p>
+        <p>Questa pratica in Europa è ormai divenuta illegale, non solo perché spinge il governo ad avere poca cura dei propri conti pubblici, ma soprattutto perché si tratta di una politica inflazionistica. Colmare il debito stampando nuova moneta di anno in anno, è la ricetta perfetta per avere un'inflazione crescente e fuori controllo. </p>
+        <p>Con un'inflazione alta e crescente, i salari reali ed il potere d'acquisto dei cittadini si erodono ancora prima che possano vedere un loro aumento nel tempo. L'erosione dei salari reali spinge i cittadini a fare maggiori pressioni sul governo, chiedendo quindi più interventi, assistenza, il che porta a maggiore deficit, nuova moneta, nuova inflazione.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Concetto chiave: cepo cambiario
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p>Il cepo cambiario consiste in una serie di restrizioni imposte dalla Banca centrale sull'acquisto di valuta estera, in particolar modo di dollari USA, e sul movimento di capitali. Lo scopo è quello di frenare la fuga di capitali verso l'estero e di proteggere le riserve della Banca Centrale. Tuttavia questo strumento ha introdotto una serie di distorsioni derivanti dalla nascita di tassi di cambio paralleli. </p>
+        <p>Il governo fissa un tasso di cambio ufficiale, ma contestualmente nascono tassi informali, come il celebre "dólar blue", che incentivano gli operatori economici a trarre vantaggio dall'arbitraggio tra i tassi. Il differenziale tra tasso ufficiale e parallelo raggiunse il 170% a fine 2023, creando incentivi all'arbitraggio e distorcendo i prezzi relativi dell'economia, con effetti negativi sulle esportazioni e sull'efficienza allocativa del sistema produttivo.</p>
+      </div>
+    </div>
+
   </div>
+
 
   <div class="timeline">
     <div class="tl-item">
@@ -613,13 +156,36 @@ footer {
     </div>
     <div class="tl-item">
       <div class="tl-year">2019 – 2023</div>
-      <div class="tl-text">Governo Fernández: deficit fiscale oltre il 5% del PIL, ulteriore deficit quasi-fiscale del 10% tramite Leliq. Inflazione annua al 211%, riserve nette esaurite, debito/PIL al 155%.</div>
+      <div class="tl-text">Governo Fernández: deficit fiscale oltre il 5% del PIL, deficit quasi-fiscale del 10% tramite Leliq. Inflazione annua al 211%, riserve nette esaurite, debito/PIL al 155%.</div>
     </div>
     <div class="tl-item">
       <div class="tl-year">Dic. 2023</div>
       <div class="tl-text">Insediamento di Javier Milei. Avvio della shock therapy: svalutazione del peso del 50%, blocco dell'offerta monetaria, tagli alla spesa pubblica, smantellamento delle Leliq.</div>
     </div>
   </div>
+
+  <div class="crisis-kpi">
+    <div class="crisis-kpi-label">La situazione ereditata · dicembre 2023</div>
+    <div class="crisis-kpi-grid">
+        <div class="crisis-kpi-card">
+        <div class="crisis-kpi-value">211%</div>
+        <div class="crisis-kpi-name">Inflazione annua</div>
+        </div>
+        <div class="crisis-kpi-card">
+        <div class="crisis-kpi-value">-2.68%</div>
+        <div class="crisis-kpi-name">Deficit primario / PIL</div>
+        </div>
+        <div class="crisis-kpi-card">
+        <div class="crisis-kpi-value">155.4%</div>
+        <div class="crisis-kpi-name">Debito / PIL</div>
+        </div>
+        <div class="crisis-kpi-card">
+        <div class="crisis-kpi-value">41.7%</div>
+        <div class="crisis-kpi-name">Tasso di povertà</div>
+        </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- SEZIONE 3: STABILIZZAZIONE -->
@@ -627,12 +193,45 @@ footer {
   <div class="section-label">Sezione 3</div>
   <h2 class="section-title">Il programma di stabilizzazione</h2>
   <div class="section-body">
-    <p>Le politiche di Milei non sono state graduali. Con il DNU 70/2023 sono state implementate oltre 350 misure di deregolamentazione, aggirando il Congresso. Il tasso di cambio ufficiale è stato svalutato di oltre il 50% in un solo giorno, eliminando il divario con il mercato parallelo e favorendo le esportazioni.</p>
-    <p>La Banca Centrale è stata vincolata al divieto di finanziamento monetario del deficit. Le Leliq — titoli a breve termine che rappresentavano il 10% del PIL di debito quasi-fiscale — sono state progressivamente smantellate. A giugno 2024 la Ley Bases ha delegato all'esecutivo poteri straordinari, avviando privatizzazioni e introducendo il RIGI per attrarre investimenti esteri superiori ai 200 milioni di dollari.</p>
-    <p>Nell'aprile 2025 l'eliminazione del cepo cambiario e il passaggio a un regime di bande (1.000–1.400 pesos per dollaro) hanno segnato la normalizzazione finanziaria, resa possibile dall'accordo FMI da 20 miliardi di dollari.</p>
+    <p>Il programma di stabilizzazione di Milei non è stato graduale. Con il DNU 70/2023 sono state implementate oltre 350 misure di deregolamentazione economica, aggirando il Congresso. Il tasso di cambio ufficiale è stato svalutato di oltre il 50% in un solo giorno, per ridurre il divario con il mercato parallelo. La Banca Centrale è stata vincolata al divieto di finanziamento monetario del deficit, per interrompere la spirale inflazionistica. In parallelo, sono stati varati una serie di tagli alla spesa pubblica, dimezzando anche i ministeri.</p>
+    <p>A giugno 2024 la Ley Bases ha delegato all’esecutivo poteri straordinari, avviando privatizzazioni e introducendo il RIGI, un regime speciale per attrarre investimenti esteri superiori ai 200 milioni di dollari. Sul fronte monetario è stato introdotto il crawling peg, una svalutazione mensile predeterminata che funge da ancora nominale per far incorporare le aspettative di svalutazione nei prezzi.</p>
+    <p>Grazie all’accordo nell’aprile 2025 con il FMI per 20 miliardi di dollari, il crawling peg è stato smantellato, sostituito da un regime di bande (1000-1400 pesos per dollaro), segnando il passaggio alla normalizzazione finanziaria. Anche il cepo cambiario è stato eliminato, con conseguente liberalizzazione dei capitali.</p>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Approfondisci: shock immediato, stabilizzazione e normalizzazione
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p><strong style="color: var(--text); font-weight: 500;">Shock immediato · dicembre 2023</strong><br>
+        Le prime riforme hanno interessato la svalutazione del peso e diversi tagli alla spesa pubblica. Innanzitutto il tasso di cambio ufficiale è stato svalutato di oltre il 50%, arrivando a circa 800 pesos per dollaro. Il finanziamento del deficit con nuovi pesos aveva ormai eroso il valore reale della moneta. Conseguentemente, i continui aumenti di offerta monetaria della Banca Centrale, avevano svuotato le riserve valutarie nette, e continuare a sostenere il valore del peso non era più possibile, il che è stato uno dei principali motivi dell’aumento del divario tra il tasso ufficiale e quello informale. Allineare il tasso ufficiale a quello di mercato avrebbe favorito le esportazioni. La svalutazione immediata e massiccia è stata preferita ad una graduale, poiché l’effetto di una politica di svalutazione graduale annunciata avrebbe generato aspettative di svalutazione con ulteriore svalutazione. Il taglio immediato ha invece prevenuto la spirale speculativa.</p>
+        <p>Alla banca centrale è stato fatto divieto di intervenire con un aumento dell’offerta monetaria. Quest’azione costituisce uno dei nodi principali della politica di Milei, con ripercussioni non solo monetarie, ma anche politiche. Una delle criticità più importanti dell’Argentina riguardava proprio il finanziamento di deficit tramite Banca Centrale, che con il governo precedente aveva assunto la forma delle Leliq. Con lo smantellamento di questo circolo vizioso l’inflazione non viene più alimentata da nuova offerta monetaria, e il debito quasi-fiscale viene sterilizzato. Da un punto di vista politico questa riforma ha la funzione di creare stabilità e fiducia nell’istituzione, rendendo credibili le politiche messe in atto, dimostrando di voler proseguire il percorso di riabilitazione economica e monetaria del paese.</p>
+        <p>Sono stati varati poi una serie di tagli alla burocrazia, dimezzando i ministeri, che sono passati da 18 a 9, e tagli alla spesa pubblica. L’economia è stata deregolamentata, con l’abrogazione di centinaia di norme ed iniziative di privatizzazione di alcune aziende statali. Il complesso di queste riforme iniziali ha consentito di interrompere il circolo vizioso prima che si autoalimentasse, gettando le basi per costruire fiducia e credibilità.</p>
+        <p><strong style="color: var(--text); font-weight: 500;">Stabilizzazione · 2024</strong><br>
+        Grazie alla Ley Bases il presidente ha potuto procedere alla privatizzazione di diverse aziende pubbliche, con la possibilità di riorganizzare o sciogliere enti statali. La versione ridotta tuttavia ha eliminato alcuni temi importanti, come la riforma della giustizia e la dichiarazione dell’istruzione come servizio essenziale. Con il medesimo pacchetto si è voluto anche incentivare investimenti stranieri tramite regimi speciali, il RIGI. Per accedere a questo programma, le imprese devono investire un minimo di 200 milioni di dollari, unitamente ad altri progetti di investimento e risultati operativi da raggiungere; i vantaggi offerti sono numerosi, tra cui: riduzioni significative dell’aliquota fiscale, deprezzamento accelerato, esenzione da tasse doganali.</p>
+        <p>I continui tagli della spesa pubblica ed il progressivo ridursi dell’inflazione hanno condotto in un solo anno ad arrivare al surplus fiscale, +1.78% del PIL nel 2024, dello +0.30% includendo gli interessi sul debito, dopo il -4.38% del 2023, il primo surplus finanziario dal 2010. La spesa primaria è calata di circa il 35% in termini reali nel primo anno di governo. Questi sono risultati importanti, perché costituiscono il presupposto di credibilità non solo per la popolazione, ma anche nei confronti del panorama internazionale, inviando segnali di ripresa economica.</p>
+        <p><strong style="color: var(--text); font-weight: 500;">Normalizzazione finanziaria · aprile 2025</strong><br>
+        Nell’aprile 2025 l’Argentina ha raggiunto un accordo con il FMI per un nuovo programma di finanziamenti. Il programma di finanziamento esteso, dalla durata di quattro anni, prevede un finanziamento complessivo di 20 miliardi di dollari, con un esborso iniziale di 12 miliardi a seguito dell’approvazione. L’accordo mira a sostenere il piano di stabilizzazione economica, con rafforzamento della Banca Centrale, rimozione dei controlli sui cambi ed ancoraggio fiscale. Il finanziamento ha avuto come principale destinazione il rafforzamento delle riserve nette internazionali della Banca Centrale.</p>
+        <p>A seguito dell’accordo con il FMI è stato quindi eliminato il sistema del crawling peg, sostituito da bande cambiarie. Con questo sistema il tasso di cambio è tornato a poter oscillare secondo gli andamenti di mercato, ma all’interno di due bande prestabilite. I fondi del FMI consentono di poter intervenire sul mercato dei tassi di cambio, in caso di eccessiva volatilità, evitando svalutazioni improvvise che alimenterebbero l’inflazione, di modo che il tasso resti nell’intervallo prestabilito.</p>
+        <p>Anche il cepo cambiario è stato smantellato, con conseguente liberalizzazione dei capitali. Grazie all’iniezione di liquidità il governo ha potuto rimuovere le restrizioni all’acquisto di valuta estera. Questo è un passaggio essenziale per eliminare i diversi tassi di cambio informali che frammentano l’economia. Senza nuova liquidità e la possibilità di ripristinare le riserve, non sarebbe stato possibile rimuovere il cepo, perché non si ha la possibilità di difendere un regime di cambio libero, poiché qualsiasi apertura al mercato avrebbe costituito un attacco speculativo alla moneta ed un collasso del peso.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Concetto chiave: cos'è il crawling peg e come funziona
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p>Il crawling peg è un sistema di tasso di cambio intermedio tra quello fisso e quello flessibile. La Banca Centrale annuncia in anticipo il ritmo di svalutazione della valuta nazionale rispetto a una valuta di riferimento, nel caso argentino il dollaro USA, e lo applica in modo periodico e prevedibile.</p>
+        <p>La sua efficacia anti-inflazionistica deriva dal meccanismo delle aspettative. In un contesto di alta inflazione, gli operatori economici incorporano nei prezzi le svalutazioni che si aspettano nel futuro. Se la Banca Centrale annuncia che la svalutazione sarà dell'1% mensile e mantiene questa promessa con credibilità, gli operatori non incorporano nei prezzi svalutazioni superiori, contribuendo direttamente alla disinflazione. Il tasso di cambio predeterminato funge quindi da ancora nominale.</p>
+        <p>Il limite del crawling peg è che richiede riserve sufficienti per essere difeso e credibilità istituzionale per essere rispettato. Se il mercato smette di credere che la Banca Centrale manterrà il ritmo annunciato il meccanismo perde efficacia. È per questo che lo smantellamento delle Leliq e il blocco dell'offerta monetaria sono stati prerequisiti necessari prima di introdurre il crawling peg.</p>
+      </div>
+    </div>
+
   </div>
+
   <div class="highlight-box">
-    Nonostante in campagna elettorale Milei avesse promesso la dollarizzazione integrale e la chiusura della Banca Centrale, le politiche adottate hanno seguito un percorso pragmatico — preservando gli strumenti di politica monetaria che si sono rivelati centrali nella stabilizzazione.
+    Nonostante in campagna elettorale Milei avesse promesso la dollarizzazione integrale e la chiusura della Banca Centrale, le politiche adottate hanno seguito un percorso pragmatico, preservando gli strumenti di politica monetaria che si sono rivelati centrali nella stabilizzazione.
   </div>
 </section>
 
@@ -641,8 +240,25 @@ footer {
   <div class="section-label">Sezione 4</div>
   <h2 class="section-title">Il consolidamento fiscale</h2>
   <div class="section-body">
-    <p>Il risultato più immediato del programma è il passaggio dal deficit cronico al surplus primario. Il saldo primario è passato dal -2.68% del 2023 al +1.78% nel 2024 e +1.25% nel 2025 — una correzione di oltre 4 punti percentuali di PIL in un solo anno, raramente osservabile nelle economie emergenti.</p>
-    <p>Il surplus è stato ottenuto quasi interamente attraverso la riduzione della spesa primaria, calata del 30.35% in termini reali tra il 2023 e il 2024. Occorre tuttavia qualificare questo risultato: si tratta in larga misura di un surplus ciclico, non strutturale. L'erosione inflazionistica ha ridotto il valore reale della spesa nominalmente fissa, e il gettito del 2024 ha beneficiato dell'Impuesto PAIS — una tassa straordinaria sulle operazioni in valuta estera, eliminata a fine 2024.</p>
+    <p>Uno dei risultati più importanti del programma è stato il passaggio dal deficit cronico al primo surplus del saldo primario da oltre un decennio. Il saldo primario è passato dal -2.68% del 2023 al +1.78% nel 2024, una correzione di oltre 4 punti percentuali di PIL in un solo anno. Nel 2025 il saldo primario si è mantenuto positivo con il +1.25%. </p>
+    <p>Il surplus è stato ottenuto principalmente attraverso la riduzione della spesa primaria. Questa è calata del 30.35% tra il 2023 ed il 2024, per un valore equivalente all’8% del PIL. Questo taglio è il risultato di due componenti: da un lato l’erosione inflazionistica, con la spesa nominale cresciuta del 122% ma l’inflazione al 220% che ne ha eroso il valore reale; dall’altro tagli nominali su voci specifiche (trasferimenti alle province, licenziamenti settore pubblico, riduzione delle pensioni reali, eliminazione dei sussidi su energia e trasporti).</p>
+    <p>Occorre tuttavia qualificare questi risultati. Il surplus del 2024 è in larga misura ciclico, poiché dipende dall'inflazione elevata che ha eroso la spesa reale, da entrate straordinarie e da una contrazione del PIL reale che ha ridotto automaticamente alcune voci di spesa. La domanda analitica corretta non è se il surplus esiste, ma se reggerebbe in condizioni normali. Nel caso argentino, solo parzialmente.</p>
+
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Concetto chiave: surplus ciclico vs surplus strutturale
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p>Un surplus di tipo strutturale è in grado di reggere anche in condizioni economiche normali, in contesti di bassa inflazione, crescita media e nessuna entrata straordinaria; condizioni non pienamente soddisfatte nel caso argentino.</p>
+        <p>Innanzitutto i tagli alla spesa pubblica sono in parte strutturali, come l’eliminazione di strutture burocratiche, ma in parte reversibili, come la contrazione di una serie di servizi essenziali. Sul fronte delle entrate il gettito del 2024 ha beneficiato parzialmente del “Impuesto PAIS”, una tassa straordinaria sulle operazioni in valuta estera, eliminata a fine 2024, che non costituisce una fonte ricorrente di entrate future. Vi è inoltre una contrazione del PIL reale che ha ridotto alcune voci di spesa indicizzate alle attività economiche.</p>
+        <p>Un surplus strutturale richiede di mantenere un avanzo primario elevato per ridurre il rapporto debito/PIL, il che contribuirebbe a ridurre la spesa per interessi, generando un circolo virtuoso. Il sistema fiscale argentino ha attualmente una base imponibile stretta, con un’elevata evasione fiscale. Una rimodulazione per ampliare la base imponibile, con minore peso su lavoratori ed imprese, stimolerebbe la crescita economica e gli investimenti.</p>
+        <p>La letteratura sulla crescita endogena suggerisce che investimenti in istruzione e capitale umano sono condizione necessaria per la crescita di lungo periodo. L’attuale riduzione di queste voci rappresenta un rischio per il potenziale sviluppo produttivo del paese.</p>
+        <p>Una misura che potrebbe rafforzare la sostenibilità fiscale di lungo periodo è l’introduzione di un vincolo istituzionale al pareggio di bilancio. Sul modello di diversi paesi europei, introdurre il vincolo di pareggio di bilancio nella costituzione favorirebbe il rispetto di questo equilibrio nel lungo termine, anche con amministrazioni diverse da quella di Milei, riducendo il rischio di cadere in un nuovo circolo vizioso di deficit cronici. Esempi come il freno al debito tedesco o la regola fiscale cilena dimostrano che vincoli istituzionali ben calibrati possono garantire disciplina fiscale anche in presenza di cicli politici avversi.</p>
+      </div>
+    </div>
+
   </div>
 
   <div class="chart-wrap">
@@ -655,24 +271,88 @@ footer {
     </div>
   </div>
 
-  <div style="margin-top: 20px;">
-    <div class="data-row">
-      <span class="data-row-label">Taglio spesa primaria reale 2023→2024</span>
-      <span class="data-row-val neg">-30.35%</span>
+  <!-- STAT PILLS -->
+  <div class="fiscal-pills">
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Taglio spesa<br>primaria reale</div>
+      <div class="fiscal-pill-value">−30.35%</div>
     </div>
-    <div class="data-row">
-      <span class="data-row-label">Equivalente in punti PIL</span>
-      <span class="data-row-val neg">-8% del PIL</span>
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Equivalente<br>in punti PIL</div>
+      <div class="fiscal-pill-value">−8%</div>
     </div>
-    <div class="data-row">
-      <span class="data-row-label">Saldo fiscale totale 2024 (incl. interessi)</span>
-      <span class="data-row-val pos">+0.30%</span>
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Correzione<br>fiscale totale</div>
+      <div class="fiscal-pill-value">+4.06 pp</div>
     </div>
-    <div class="data-row">
-      <span class="data-row-label">Primo surplus finanziario dal</span>
-      <span class="data-row-val">2010</span>
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Primo surplus<br>fiscale dal</div>
+      <div class="fiscal-pill-value">2010</div>
     </div>
   </div>
+
+  <!-- BARRE: COMPOSIZIONE TAGLIO -->
+  <div class="fiscal-bars-wrap">
+    <div class="fiscal-bars-label">Composizione del taglio alla spesa primaria reale (−30.35%)</div>
+    <div class="fiscal-bar-stacked-track">
+      <div class="fiscal-bar-stacked-segment fiscal-bar-stacked-segment--inflation" style="width: 60%;">~60%</div>
+      <div class="fiscal-bar-stacked-segment fiscal-bar-stacked-segment--explicit" style="width: 40%;">~40%</div>
+    </div>
+    <div class="fiscal-bar-legend">
+      <div class="fiscal-bar-legend-item">
+        <div class="fiscal-bar-legend-dot" style="background: var(--gold-dim);"></div>
+        Erosione inflazionistica
+      </div>
+      <div class="fiscal-bar-legend-item">
+        <div class="fiscal-bar-legend-dot" style="background: var(--red);"></div>
+        Tagli nominali espliciti
+      </div>
+    </div>
+    <div class="fiscal-bar-note">La spesa nominale è aumentata del 122%, ma l'inflazione al 220% ne ha eroso il valore reale. I tagli espliciti hanno interessato trasferimenti alle province, spesa pubblica per il personale, pensioni reali e sussidi.</div>
+  </div>
+
+  <!-- BARRE: COMPOSIZIONE PER SETTORE -->
+  <div class="fiscal-bars-wrap">
+    <div class="fiscal-bars-label">Variazione reale della spesa per voce · 2023→2024</div>
+    <div class="fiscal-bar-item">
+      <div class="fiscal-bar-name">Trasferimenti alle province</div>
+      <div class="fiscal-bar-track">
+        <div class="fiscal-bar-fill fiscal-bar-fill--explicit" style="width: 76.4%;">−76.4%</div>
+      </div>
+    </div>
+    <div class="fiscal-bar-item">
+      <div class="fiscal-bar-name">Opere pubbliche e investimenti</div>
+      <div class="fiscal-bar-track">
+        <div class="fiscal-bar-fill fiscal-bar-fill--explicit" style="width: 74.7%;">−74.7%</div>
+      </div>
+    </div>
+    <div class="fiscal-bar-item">
+      <div class="fiscal-bar-name">Sussidi economici</div>
+      <div class="fiscal-bar-track">
+        <div class="fiscal-bar-fill fiscal-bar-fill--explicit" style="width: 31.5%;">−31.5%</div>
+      </div>
+    </div>
+    <div class="fiscal-bar-item">
+      <div class="fiscal-bar-name">Università</div>
+      <div class="fiscal-bar-track">
+        <div class="fiscal-bar-fill fiscal-bar-fill--explicit" style="width: 24.4%;">−24.4%</div>
+      </div>
+    </div>
+    <div class="fiscal-bar-item">
+      <div class="fiscal-bar-name">Salari e funzionamento dello Stato</div>
+      <div class="fiscal-bar-track">
+        <div class="fiscal-bar-fill fiscal-bar-fill--explicit" style="width: 19.1%;">−19.1%</div>
+      </div>
+    </div>
+    <div class="fiscal-bar-item">
+      <div class="fiscal-bar-name">Prestazioni di sicurezza sociale</div>
+      <div class="fiscal-bar-track">
+        <div class="fiscal-bar-fill fiscal-bar-fill--explicit" style="width: 9.1%;">−9.1%</div>
+      </div>
+    </div>
+    <div class="fiscal-bar-note">Fonte: bilanci del governo argentino — Ministerio de Economía. Variazioni in termini reali deflazionate per IPC.</div>
+  </div>
+
 </section>
 
 <!-- SEZIONE 5: MONETARIA -->
@@ -680,19 +360,68 @@ footer {
   <div class="section-label">Sezione 5</div>
   <h2 class="section-title">Politica monetaria e cambiaria</h2>
   <div class="section-body">
-    <p>Il risultato più rilevante del programma è la disinflazione. L'inflazione mensile è calata dal 25.5% di dicembre 2023 al 2.7% di dicembre 2024 — una riduzione di oltre 20 punti percentuali in cinque mesi. Il crawling peg, fissando una svalutazione mensile predeterminata (inizialmente al 2%, poi all'1%), ha funzionato da ancora nominale: gli operatori non incorporano nei prezzi svalutazioni superiori a quelle annunciate.</p>
-    <p>Occorre qualificare questi dati. Il calo dell'inflazione annuale dal 211% al 117% riflette in parte un effetto base statistico — il confronto avviene con il 2023, anno in cui i prezzi erano già eccezionalmente alti. L'indicatore più affidabile è l'inflazione mensile, che mostra una tendenza discendente genuina e persistente. Rimangono tuttavia rischi strutturali: pressioni salariali dai rinnovi contrattuali, shock tariffari da eliminazione sussidi, e pressioni cambiarie verso il limite superiore delle bande.</p>
+    <p>Il risultato macroeconomico più rilevante del programma è la disinflazione. L’inflazione mensile è calata dal 25.5% del dicembre 2023 al 2.7% nel dicembre 2024, con una riduzione nei primi 5 mesi di oltre 20 punti percentuali; mentre l’inflazione annuale è calata dal 211% nel 2023 al 117% nel 2024. Il crawling peg, fissando una svalutazione mensile predeterminata (inizialmente al 2%, poi all’1%), ha funzionato da ancora nominale. Il sistema è stato sostituito da bande cambiarie che ha consentito di ridurre l’apprezzamento reale del peso. Inoltre, le Leliq introdotte nel governo Fernandez sono state sensibilmente ridotte in favore di strumenti a più lungo termine.</p>
+    <p>Occorre qualificare questi risultati, in quanto la diminuzione dell’inflazione annuale riflette in parte un effetto base statistico. L’indicatore più affidabile è l’inflazione mensile, che mostra una tendenza decrescente e genuina. Le politiche monetarie hanno avuto successo, ma permangono rischi strutturali: pressioni salariali dei rinnovi contrattuali, shock tariffari da eliminazione sussidi, pressioni cambiarie verso il limite superiore delle bande.</p>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Approfondisci: strumenti, risultati e rischi residui
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p>Con l’eliminazione del cepo, il crawling peg è stato sostituito da bande cambiarie, dando maggiore possibilità al peso di potersi adattare ai prezzi di mercato. Questo sistema consente alla moneta di poter fluttuare liberamente all’interno delle bande, con interventi della Banca Centrale nel caso in cui si avvicina troppo ai limiti, acquistando o vendendo dollari. L’intervallo stabilito è tra i 1000 ed i 1400 pesos per dollaro, con un adeguamento mensile inizialmente fissato all’1%, poi indicizzato all’inflazione del mese precedente a partire da gennaio 2026. Questo approccio consente di ridurre l’apprezzamento reale del peso e di favorire l’accumulo di riserve, uno dei problemi più rilevanti non ancora risolti dall’attuale amministrazione.</p>
+        <p>Complessivamente le politiche monetarie hanno avuto successo, ma non hanno eliminato completamente il rischio di un rimbalzo in alto dell’inflazione. Con la decelerazione dell’inflazione, i rinnovi contrattuali hanno iniziato a produrre aumenti nominali superiori all’inflazione corrente, avviando un recupero del salario reale, eroso precedentemente dai picchi di inflazione. Tuttavia ciò rappresenta anche un rischio, poiché qualora i rinnovi contrattuali richiedano aumenti salariali significativi, può condurre ad una spirale prezzi salari. </p>
+        <p>L’aumento dei salari nominali è un maggiore costo per le imprese, che tendono a trasferire questi costi maggiori sui prezzi finali, alimentando l’inflazione. In secondo luogo, i tagli alla spesa pubblica hanno interessato anche i sussidi. Ciò può portare ad un aumento dei prezzi di servizi come energia e trasporti, che sono spesso sussidiati, e ha quindi effetti diretti sui prezzi al consumo, alimentando l’inflazione. Questo avviene perché sebbene il sussidio tenga basso il prezzo nel breve termine, una sua eliminazione improvvisa crea uno shock di offerta con effetti inflazionistici immediati. Un terzo rischio è di tipo cambiario: eventuali pressioni sul tasso di cambio verso il limite superiore delle bande potrebbero trasmettere nuove spinte inflazionistiche tramite il canale delle importazioni.</p>
+        <p>Il processo di disinflazione è documentato e solido nell’andamento, ma rimane esposto a rischi di rimbalzo di natura strutturale, richiedendo un monitoraggio costante. La scelta di non procedere alla dollarizzazione integrale ha preservato la Banca Centrale ed i relativi strumenti di politica monetaria, che si sono rivelati centrali nel processo di stabilizzazione.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Concetto chiave: cosa sono le Leliq
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p>Le Leliq (Letras de Liquidez) sono titoli di debito a breve termine emessi dalla Banca Centrale argentina, collocati principalmente presso le banche commerciali. Nascono come strumento di sterilizzazione: quando la Banca Centrale vuole ridurre la liquidità in circolazione, ad esempio perché ha stampato troppa moneta, emette questi titoli e li vende alle banche, ritirando pesos dal sistema.</p>
+        <p>Il problema è che le Leliq pagano interessi elevati. Nel contesto di alta inflazione e tassi reali negativi che ha caratterizzato l'Argentina, i rendimenti offerti per rendere i titoli appetibili alle banche erano altissimi, e gli interessi maturati venivano a loro volta pagati emettendo nuova moneta o nuovi titoli, in un circolo che si autoalimentava. Al momento dell'insediamento di Milei lo stock di Leliq valeva circa il 10% del PIL, con tassi di interesse nominali superiori al 100% annuo.</p>
+        <p>Milei ha progressivamente smantellato questo meccanismo, sostituendo le Leliq con strumenti a più lungo termine e riducendo lo stock complessivo. L'obiettivo era eliminare la pressione inflazionistica generata dagli interessi e restituire alla Banca Centrale un bilancio più gestibile, prerequisito per ristabilire credibilità istituzionale.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Concetto chiave: l'effetto base statistico
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p>L'inflazione annuale si calcola confrontando il livello dei prezzi di un mese con quello dello stesso mese dell'anno precedente. Quando il periodo di confronto, il denominatore, è un anno in cui i prezzi erano già molto alti, il tasso annuale tende a scendere automaticamente, anche se i prezzi continuano a salire nel periodo corrente.</p>
+        <p>Nel caso argentino questo effetto è particolarmente rilevante. Il 2023 è stato un anno di inflazione eccezionale, con picchi mensili superiori al 12% da agosto in poi e un dicembre al 25.5%. Confrontare i mesi del 2024 con questa base molto alta produce tassi annuali artificialmente compressi, che possono dare l'impressione di una disinflazione più rapida di quella reale.</p>
+        <p>Per questo motivo l'inflazione mensile è l'indicatore più corretto per valutare la velocità corrente del processo. Non risente dell'effetto base e mostra direttamente quanto stanno salendo i prezzi in quel momento. Ciononostante, i risultati ottenuti sono rilevanti. L’inflazione mensile non scendeva al di sotto del 3% dall’agosto 2021, e l’inflazione annua non era al di sotto del 33% dal luglio 2018.</p>
+      </div>
+    </div>
+
   </div>
 
   <div class="chart-wrap">
     <div class="chart-header">
-      <div class="chart-title">Inflazione mensile IPC (%) · 2024–2025</div>
+      <div class="chart-title">Inflazione mensile IPC (%) · 2022–2025</div>
       <div class="chart-source">Fonte: INDEC</div>
     </div>
     <div class="chart-container">
       <canvas id="chartInflazione"></canvas>
     </div>
   </div>
+
+  <div class="chart-wrap">
+    <div class="chart-header">
+      <div class="chart-title">Inflazione annuale IPC (%) · 2022–2025</div>
+      <div class="chart-source">Fonte: INDEC</div>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartInflazioneAnnua"></canvas>
+    </div>
+  </div>
+
 </section>
 
 <!-- SEZIONE 6: DEBITO -->
@@ -700,8 +429,44 @@ footer {
   <div class="section-label">Sezione 6</div>
   <h2 class="section-title">Debito pubblico, FMI e relazioni internazionali</h2>
   <div class="section-body">
-    <p>Il rapporto debito/PIL è sceso dal 155% del 2023 all'83% del 2024. Questo risultato, apparentemente straordinario, richiede una qualificazione: la riduzione non è avvenuta perché il debito è diminuito, ma perché il PIL nominale in pesos è cresciuto rapidamente per effetto dell'inflazione, mentre il debito — in parte denominato in valuta estera — è cresciuto più lentamente. Il PIL reale ha subito una contrazione nel 2024.</p>
-    <p>L'accordo FMI dell'aprile 2025 — il terzo dal 2018 — prevede 20 miliardi di dollari con un esborso iniziale di 12 miliardi (frontloading anomalo che segnala l'urgenza di ricostruire le riserve). A questo si aggiungono una linea di credito del Tesoro USA da 20 miliardi e il rinnovo dello swap con la Cina da 5 miliardi. Le riserve restano il punto critico: nonostante la liquidità ottenuta, le riserve nette rimangono fragili di fronte a scadenze per circa 15 miliardi di dollari nel 2026.</p>
+    <p>Il rapporto debito/PIL è sceso dal 155% del 2023 all'83% del 2024, un crollo apparentemente straordinario che richiede però un approfondimento. Il debito non è diminuito: è il PIL nominale in pesos ad essere cresciuto rapidamente per effetto dell'inflazione, mentre il debito denominato in valuta estera ha seguito un ritmo più lento. Il PIL reale nel 2024 ha subito una contrazione. Il denominatore è esploso, il numeratore no, e il rapporto si è ridotto di conseguenza.</p>
+    <p>La liquidità esterna è il punto centrale di questa sezione. L’accordo FMI del 2025, dal valore di 20 miliardi totali, di cui 12 erogati immediatamente, ha consentito una ricostruzione parziale delle riserve lorde. A ciò si aggiungono una linea di credito del Tesoro USA da 20 miliardi ed il rinnovo della linea di swap con la Cina da 5 miliardi. Questi accordi hanno contribuito alla ricostruzione delle riserve, ma il processo è ancora in corso, in quanto le riserve nette restano fragili rispetto alle scadenze da circa 15 miliardi di dollari del 2026.</p>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Approfondisci: accordi FMI, triangolazione geopolitica e sostenibilità
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p><strong style="color: var(--text); font-weight: 500;">Gli accordi con il FMI</strong><br>
+        Dopo il default del 2001 ed il rimborso anticipato nel 2005, l’Argentina ha operato per oltre un decennio senza programmi attivi con il FMI, data l’instabilità dell’Argentina. Tuttavia, a partire dal 2018 FMI e Argentina hanno siglato tre accordi. </p>
+        <p>Il primo nel 2018 prevedeva un accordo record di circa 50 miliardi di dollari, poi ampliato a 57 miliardi, il più grande nella storia del FMI. L’accordo prevedeva di stabilizzare l’economia argentina, ridurre inflazione e deficit fiscale. Il programma non raggiunse gli obiettivi prefissati, la stabilizzazione economica non si consolidò, trasformando il debito verso privati in debito verso il fondo, contribuendo a peggiorare le condizioni ereditate dal governo successivo. </p>
+        <p>Il secondo accordo è stato siglato nel 2022, si tratta di una ristrutturazione del debito, prevedendo politiche economiche per rafforzare la stabilità economica, ridurre l’inflazione ed aumentare le riserve della Banca Centrale.</p>
+        <p>Nel 2025 si è giunti ad una nuova intesa, con un finanziamento di 20 miliardi di dollari totali, con lo scopo principale di ripristinare le riserve della Banca Centrale. Tra le richieste del FMI vi è la prosecuzione dell’eliminazione del deficit fiscale, eliminazione del cepo cambiario e controllo dell’inflazione. Nel luglio 2025 il FMI ha approvato la prima revisione del nuovo piano di aiuti, sbloccando ulteriori 2 miliardi di dollari. I fondi immediatamente concessi riflettono la necessità urgente di ricostruire riserve e segnalare al mercato la fiducia del Fondo nel programma. Il fondo ha approvato la revisione nonostante il mancato raggiungimento degli obiettivi delle riserve, grazie anche all’impegno sul fronte fiscale.</p>
+        <p><strong style="color: var(--text); font-weight: 500;">Argentina contesa tra USA e Cina</strong><br>
+        In aggiunta ai fondi ottenuti con il FMI, l’Argentina ha anche firmato accordi di swap con Cina e Stati Uniti. L’amministrazione Trump ha promesso sostegno all’Argentina, siglando un accordo da 20 miliardi di dollari, tramite una linea di credito fornita dal Tesoro USA per intervenire nei mercati dei cambi e stabilizzare il peso argentino. </p>
+        <p>L’accordo siglato a fine ottobre 2025 ha rafforzato la fiducia degli investitori, avendo gli Stati Uniti come garante di ultima istanza, ma ha anche allineato geopoliticamente l’Argentina agli USA per i prossimi anni. Il piano serve per consolidare l’influenza statunitense nell’area sudamericana, offrendosi come alternativa credibile rispetto ad altri attori internazionali, come la Cina. </p>
+        <p>Il rapporto con la Cina infatti sembrava essersi interrotto a fine 2023, dopo che Pechino aveva congelato la linea di swap a seguito delle critiche di Milei nei confronti del governo cinese. Ciononostante, per evitare il default e stabilizzare la moneta, Milei ha rinnovato la linea di swap, circa 5 miliardi di dollari, confermando la Cina come un partner essenziale per la liquidità commerciale ed investimenti in settori strategici. Questo riflette il pragmatismo del governo Milei: nonostante le differenze ideologiche e la possibilità di rivolgersi ad altri paesi, come gli USA, la Cina resta un partner commerciale importante. </p>
+        <p>L’Argentina si trova quindi in una situazione di equilibrio tra i due paesi in questione, ma è anche oggetto di scontro strategico tra le due superpotenze, con gli USA che tentano di ristabilire la loro presenza e soppiantare quella cinese.</p>
+        <p>Nonostante il surplus commerciale, la situazione resta critica, poiché le riserve nette restano ancora scarse ed il paese rischia nuove crisi valutarie. La ricostruzione di stock di valuta estera è un processo lento: la persistente scarsità di valuta estera limita la capacità di far fronte agli obblighi internazionali, mantenendo alta la pressione sul tasso di cambio.</p>
+        <p><strong style="color: var(--text); font-weight: 500;">La sostenibilità del debito</strong><br>
+        La sostenibilità del debito nel medio-lungo termine deriva dalla capacità dell’Argentina di pagare gli interessi, che per il 2026 ammontano a circa 15 miliardi di dollari USA, di cui 4 miliardi al FMI. L’attuale programmazione ha di fatto traslato le scadenze del debito nel medio termine, riducendo la pressione immediata ma non eliminandone il rischio. </p>
+        <p>I nuovi finanziamenti con FMI e credito con Cina ed USA, aumentano la liquidità immediata, ma allo stesso tempo aumentano il peso degli obblighi contrattuali futuri. Le riserve restano dunque il punto critico: il governo Milei sta provando a ricostruirle, ma il processo resta vulnerabile a shock esterni ed alla volatilità del tasso di cambio.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Concetto chiave: perché il rapporto debito/PIL può ingannare
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p>Il debito argentino è in gran parte denominato in dollari USA, quindi il suo valore in pesos aumenta quando il peso si svaluta. Nel corso del 2024 e 2025 il governo ha mantenuto un regime di svalutazione controllata, il peso si è svalutato nominalmente attraverso il crawling peg, ma ad un ritmo inferiore all’inflazione interna, producendo un apprezzamento in termini reali. </p>
+        <p>Il denominatore, ossia il PIL nominale in pesos, è aumentato rapidamente a causa dell’inflazione, mentre il numeratore, il debito, è aumentato più lentamente, comportando una contrazione del rapporto. Nel complesso quindi il rapporto è diminuito, non perché il debito sia diminuito, ma perché il valore nominale dell’economia è incrementato più di quanto abbia fatto il debito, difatti il PIL reale ha subito una contrazione nel 2024. </p>
+        <p>Per valutare la sostenibilità bisogna quindi analizzare al debito in termini assoluti, alla sua composizione valutaria ed alle scadenze nel tempo, nonché alla capacità del paese di generare valuta estera per onorare le obbligazioni. Tuttavia le proiezioni del FMI sono positive, indicando una diminuzione del debito al 78.7% nel 2025, al 73% nel 2026, con una riduzione graduale fino al 2030 al 58%.</p>
+      </div>
+    </div>
+
   </div>
 
   <div class="chart-wrap">
@@ -714,11 +479,30 @@ footer {
     </div>
   </div>
 
+  <div class="fiscal-pills">
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Riserve lorde<br>dic. 2025</div>
+      <div class="fiscal-pill-value">$38 mld</div>
+    </div>
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Scadenze debito<br>2026</div>
+      <div class="fiscal-pill-value">~$15 mld</div>
+    </div>
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Frontloading<br>FMI 2025</div>
+      <div class="fiscal-pill-value">$12 mld</div>
+    </div>
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Swap<br>Cina</div>
+      <div class="fiscal-pill-value">$5 mld</div>
+    </div>
+  </div>
+
   <div class="cards-grid">
     <div class="info-card">
       <div class="info-card-label">Accordo FMI 2025</div>
       <div class="info-card-title">EFF quadriennale · $20 mld</div>
-      <div class="info-card-body">12 miliardi erogati immediatamente. Prima revisione luglio 2025: approvata nonostante il mancato raggiungimento della meta riserve.</div>
+      <div class="info-card-body">12 miliardi erogati immediatamente. Prima revisione luglio 2025 approvata nonostante il mancato raggiungimento della meta riserve.</div>
     </div>
     <div class="info-card">
       <div class="info-card-label">Linea di credito USA</div>
@@ -731,6 +515,7 @@ footer {
       <div class="info-card-body">Rinnovato nonostante le tensioni diplomatiche. Essenziale per evitare il default tecnico durante la shock therapy.</div>
     </div>
   </div>
+
 </section>
 
 <!-- SEZIONE 7: SOCIALE -->
@@ -738,8 +523,44 @@ footer {
   <div class="section-label">Sezione 7</div>
   <h2 class="section-title">Impatto sociale: povertà, salari e mercato del lavoro</h2>
   <div class="section-body">
-    <p>La traiettoria della povertà descrive una V: dal 41.7% del secondo semestre 2023 al picco del 52.9% nel primo semestre 2024, fino al 31.6% nel primo semestre 2025. Il picco è direttamente attribuibile alla svalutazione del peso di dicembre 2023, che ha eroso il potere d'acquisto reale. Il recupero è avvenuto con la decelerazione dell'inflazione e i conseguenti rinnovi contrattuali.</p>
-    <p>Il costo dell'aggiustamento è ricaduto in modo asimmetrico. Il settore privato formale ha beneficiato delle paritarias — rinnovi contrattuali collettivi — che hanno consentito aumenti nominali superiori all'inflazione. I lavoratori del settore pubblico e informale non hanno potuto accedere a questi meccanismi. L'informalità lavorativa — stimata tra il 41% e il 43% della forza lavoro — distorce le statistiche di disoccupazione e rimane il nodo strutturale irrisolto.</p>
+    <p>La traiettoria della povertà descrive una V: dal 41.7% del secondo semestre 2023 al picco del 52.9% nel primo semestre 2024, fino al 28.2% nel secondo semestre 2025. Il picco è direttamente attribuibile alla svalutazione del dicembre 2023, che ha eroso il potere d'acquisto reale prima che i salari potessero adeguarsi. Il recupero è avvenuto con la decelerazione dell'inflazione e i conseguenti rinnovi contrattuali.</p>
+    <p>Il mercato del lavoro racconta però una situazione più complessa. Il tasso di occupazione si è mantenuto stabile, intorno al 48.5%, tuttavia il mercato argentino è caratterizzato dalla presenza di un’alta informalità del lavoro: l’INDEC stima che circa il 43% della popolazione ha lavoro informale. I salari reali hanno seguito la V della povertà, con un recupero graduale dei salari a valori pre-crisi all’inizio del 2025. </p>
+    <p>Mentre il settore privato formale ha beneficiato delle paritarias (rinnovi contrattuali collettivi), i lavoratori pubblici ed informali non hanno avuto accesso a questo meccanismo: i primi per via dei tagli alla spesa pubblica, i secondi per assenza di tutele contrattuali. Ciò ha comportato che il costo dell’aggiustamento economico ricadesse in modo asimmetrico sulla popolazione.</p>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Approfondisci: povertà, salari reali e costi asimmetrici dell'aggiustamento
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p><strong style="color: var(--text); font-weight: 500;">Indice di povertà ed indigenza</strong><br>
+        I dati dell’INDEC hanno frequenza semestrale e si basano su una struttura di spesa del 2004/2005, il che implica che i beni con maggiore peso nell’indice riflettono i consumi di venti anni fa. In un contesto di alta inflazione questo può distorcere la misurazione della soglia di povertà rispetto alla struttura di spesa effettiva delle famiglie. È il motivo per cui spesso questi dati vengono confrontati con l’UCA-ODSA, che pubblica dati trimestrali ed utilizza una struttura più aggiornata, portando a tassi di povertà più alti, ma consentendo di analizzare meglio la dinamica nel breve termine. </p>
+        <p>Si specifica che l’indice di povertà è calcolato sulla percentuale delle famiglie e degli individui il cui reddito non è sufficiente a coprire un paniere di beni e servizi essenziali, quindi non solo alimenti. Analizzando i dati trimestrali emerge che il picco è avvenuto solo nel primo trimestre 2024, con una diminuzione iniziata già nel secondo trimestre. La causa di quest’aumento è attribuibile alla svalutazione del peso nel dicembre 2023: la svalutazione ha comportato un aumento dei prezzi reali dei beni in generale, compresi quelli di prima necessità. </p>
+        <p>La rapida diminuzione in un semestre è invece dovuta alla forte disinflazione, che con conseguenti adeguamenti salariali, ha consentito un recupero del potere d’acquisto della popolazione. Analizzando l’indigenza, ossia coloro che non riescono a coprire con il proprio reddito nemmeno i bisogni alimentari di base, la dinamica è simile, con un picco nel primo semestre del 2024, ed una rapida diminuzione nel secondo semestre, passando dal 18.1% al 6.9%.</p>
+        <p><strong style="color: var(--text); font-weight: 500;">I salari reali</strong><br>
+        I salari reali hanno subito la svalutazione e inflazione elevata, come la V della povertà, con conseguente perdita di potere d’acquisto fino al primo trimestre del 2024, seguito da un recupero graduale che ha riportato i salari reali a valori pre-crisi all’inizio del 2025. Non è ancora possibile stabilire l’effetto netto delle politiche Milei sul fronte dei salari reali, in quanto hanno appena recuperato la perdita accumulata con la shock therapy. </p>
+        <p>Il settore pubblico è quello che ha visto la principale diminuzione in termini salariali, non solo nominale ma anche reale. Il settore pubblico e quello informale sono quelli che soffrono maggiormente degli shock inflazionistici, il primo a causa della rigidità contrattuale e della dipendenza delle politiche fiscali, il secondo per l’esatto opposto, ossia mancanza di tutele contrattuali. In un contesto di contenimento dell’inflazione e deficit fiscale, il taglio alla spesa pubblica si è tradotto anche in aumenti salariali inferiori all’inflazione, con conseguente perdita reale. </p>
+        <p>Il settore informale non ha alcun meccanismo di indicizzazione, i lavoratori informali non godendo di contratti collettivi non hanno copertura previdenziale, ed i loro salari dipendono esclusivamente dalla contrattazione individuale con il mercato locale. In contesti di alta inflazione i loro redditi crescono molto più lentamente.</p>
+        <p><strong style="color: var(--text); font-weight: 500;">Il costo dell'aggiustamento</strong><br>
+        Il costo del risanamento fiscale e della riduzione dell’inflazione è ricaduto in modo asimmetrico su lavoratori dipendenti ed in particolare sull’economia informale. Il settore privato ha avuto una capacità di adattamento superiore grazie al meccanismo delle paritarias, rinnovi contrattuali collettivi che hanno consentito aumenti nominali superiori all’inflazione nel corso del 2024. </p>
+        <p>I lavoratori informali non hanno potuto beneficiare di questo strumento, il che ha influenzato la V della povertà discussa in precedenza. I problemi strutturali rimangono: il mercato del lavoro è in larga misura informale. Questa parte della popolazione è esposta agli shock senza ammortizzatori, inoltre i lavoratori pubblici sono soggetti ai tagli alla spesa. </p>
+        <p>A ciò si aggiunge che i dati raccolti dall’INDEC, tramite gli EPH, rappresentano circa il 70% della popolazione, ossia vengono raccolti nei contesti urbani. Questo comporta che probabilmente i dati sottostimano la dinamica salariale informale, nonché il tenore di vita medio nazionale e l’estensione della povertà. </p>
+        <p>Infine, la perdita di salario reale non scompare con la sua ripresa, poiché chi ha dovuto diminuire consumi ed investimenti non torna automaticamente al punto di partenza. Questo fenomeno è noto in letteratura come “scarring effect”, e descrive le cicatrici permanenti che shock prolungati lasciano sul capitale umano e sulle aspettative. È un effetto rilevante, perché l’Argentina ha accumulato molti cicli di questo tipo: i dati non catturano la persistenza dei costi individuali, che rimangono distribuiti in modo asimmetrico, in particolare tra chi disponeva di strumenti di tutela e chi ne era privo.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Concetto chiave: perché l'informalità distorce le statistiche
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p>Il lavoro informale crea distorsioni su diversi fronti. Innanzitutto la definizione di disoccupato è quella generale della maggior parte dei paesi, ossia risulta tale l’individuo che non lavora ma ne sta attivamente cercando uno. Ciò implica che se una persona ha svolto una qualsiasi attività lavorativa informale viene classificata come occupata, e fa sì che persone in situazione di precarietà vengano contate come occupate, abbassando il tasso di disoccupazione. </p>
+        <p>Il secondo effetto riguarda i salari. Chi non ha un contratto non compare nelle statistiche salariali formali, non riceve ammortizzatori sociali e, se perde il lavoro, non entra nelle statistiche della disoccupazione, semplicemente esce dalla forza lavoro. Questo significa che la dinamica salariale ufficiale sovrarappresenta il settore formale, che è anche quello con maggiore capacità contrattuale e accesso alle paritarias.</p>
+        <p>Il terzo effetto è fiscale: i lavoratori informali non contribuiscono al gettito previdenziale, riducendo le entrate disponibili per lo stato e ampliando la base imponibile su cui ricade il peso della tassazione. In un paese con il 43% di informalità, qualsiasi statistica su occupazione, salari e povertà va letta con questo filtro, i dati ufficiali descrivono con accuratezza il settore formale, ma coprono solo parzialmente il paese reale.</p>
+      </div>
+    </div>
+
   </div>
 
   <div class="chart-wrap">
@@ -752,24 +573,44 @@ footer {
     </div>
   </div>
 
-  <div style="margin-top: 20px;">
-    <div class="data-row">
-      <span class="data-row-label">Tasso di disoccupazione Q1 2024</span>
-      <span class="data-row-val neg">7.7%</span>
+  <div class="fiscal-pills">
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Tasso occupazione<br>Q4 2025</div>
+      <div class="fiscal-pill-value">48.6%</div>
     </div>
-    <div class="data-row">
-      <span class="data-row-label">Lavoratori informali (stima INDEC)</span>
-      <span class="data-row-val">41–43%</span>
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Disoccupazione<br>Q4 2025</div>
+      <div class="fiscal-pill-value">7.5%</div>
     </div>
-    <div class="data-row">
-      <span class="data-row-label">Indigenza · I sem. 2025</span>
-      <span class="data-row-val pos">6.9%</span>
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Indigenza<br>II sem. 2025</div>
+      <div class="fiscal-pill-value">6.3%</div>
     </div>
-    <div class="data-row">
-      <span class="data-row-label">Copertura EPH (contesti urbani)</span>
-      <span class="data-row-val">~70% popolazione</span>
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Copertura EPH<br>(contesti urbani)</div>
+      <div class="fiscal-pill-value">~70%</div>
     </div>
   </div>
+
+  <div class="fiscal-bars-wrap">
+    <div class="fiscal-bars-label">Composizione forza lavoro occupata · stima INDEC</div>
+    <div class="fiscal-bar-stacked-track">
+      <div class="fiscal-bar-stacked-segment fiscal-bar-stacked-segment--inflation" style="width: 57%;">Formale · ~57%</div>
+      <div class="fiscal-bar-stacked-segment fiscal-bar-stacked-segment--explicit" style="width: 43%;">Informale · ~43%</div>
+    </div>
+    <div class="fiscal-bar-legend">
+      <div class="fiscal-bar-legend-item">
+        <div class="fiscal-bar-legend-dot" style="background: var(--gold-dim);"></div>
+        Occupati formali (~7.7 mln)
+      </div>
+      <div class="fiscal-bar-legend-item">
+        <div class="fiscal-bar-legend-dot" style="background: var(--red);"></div>
+        Occupati informali (~5.8 mln)
+      </div>
+    </div>
+    <div class="fiscal-bar-note">Su 13.5 milioni di occupati totali. I lavoratori informali non dispongono di tutele contrattuali, ammortizzatori sociali o meccanismi di indicizzazione salariale.</div>
+  </div>
+
 </section>
 
 <!-- SEZIONE 8: RATING -->
@@ -777,17 +618,53 @@ footer {
   <div class="section-label">Sezione 8</div>
   <h2 class="section-title">Rating, rischio paese e ritorno sui mercati</h2>
   <div class="section-body">
-    <p>Il miglioramento delle condizioni macroeconomiche è stato riconosciuto dai mercati finanziari internazionali. L'EMBI — indicatore dello spread sovrano argentino rispetto ai Treasury USA — è calato da 1.907 punti base a gennaio 2024 a 311 punti base a marzo 2026. Tutte e tre le principali agenzie di rating hanno effettuato upgrade, pur mantenendo l'Argentina in territorio speculativo profondo.</p>
-    <p>A fine 2025 l'Argentina è tornata sui mercati internazionali con l'emissione del Bonar 2029N: 1 miliardo di dollari a una cedola del 6.5% annuo, con domanda superiore del 42% rispetto all'offerta. Un segnale positivo, ma che va contestualizzato: il rating CCC+ di S&P e Caa1 di Moody's segnalano ancora un rischio di default non trascurabile.</p>
+    <p>Il miglioramento delle condizioni macroeconomiche è stato registrato anche dai mercati finanziari. L'EMBI, lo spread tra i titoli sovrani argentini e i Treasury USA, indicatore del rischio percepito dagli investitori, è calato da 1.964 punti base a gennaio 2024 a 561 punti base a dicembre 2025, con un picco intermedio a settembre 2025 (1.222 bp) che segnala come la fiducia degli investitori non sia ancora consolidata. Tutte e tre le principali agenzie di rating hanno effettuato upgrade, pur mantenendo l'Argentina in territorio speculativo profondo: il rischio di default non è ancora considerato trascurabile.</p>
+    <p>A fine 2025 l'Argentina è tornata sui mercati internazionali con l'emissione del Bonar 2029N: un totale di un miliardo di dollari, cedola al 6.5%, prezzo di emissione a 91 centesimi. Le richieste hanno superato l'offerta del 42%, segnalando un interesse degli investitori superiore alle attese. È un passo significativo per un paese che era di fatto escluso dai mercati internazionali dal default del 2020.</p>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        Approfondisci: EMBI, agenzie di rating e accesso ai mercati
+        <span class="accordion-arrow">↓</span>
+      </button>
+      <div class="accordion-body">
+        <p><strong style="color: var(--text); font-weight: 500;">EMBI</strong><br>
+        L'EMBI (Emerging Markets Bond Index) misura la differenza di rendimento tra i titoli di stato di un paese emergente e i Treasury bond USA, considerati il benchmark privo di rischio. Questo differenziale, espresso in punti base, dove 100 bp equivale all'1%, rappresenta il premio che gli investitori richiedono per detenere debito argentino invece di debito americano. Più alto lo spread, più alto il rischio percepito e più costoso per il paese finanziarsi sui mercati internazionali. A gennaio 2024 lo spread era 1.964 bp, ossia l'Argentina pagava circa il 19% più degli USA per raccogliere capitali.</p>
+        <p>La discesa a 561 bp di dicembre 2025 è significativa, ma va contestualizzata. La volatilità nel percorso è stata elevata: il picco di settembre 2025 a 1.222 bp segnala che la fiducia degli investitori non è lineare e che il mercato continua a prezzare vulnerabilità strutturali residue. Il livello attuale colloca l'Argentina nella fascia alta degli spread tra i mercati emergenti: paesi come il Brasile si attestano tipicamente sotto i 200 bp, l'investment grade inizia intorno ai 150 bp. Il miglioramento è reale, ma la distanza da una normalizzazione piena rimane ampia.</p>
+        <p><strong style="color: var(--text); font-weight: 500;">Agenzie di rating</strong><br>
+        Sul fronte del rating, le tre principali agenzie, S&P, Moody's e Fitch, hanno tutte effettuato upgrade nel corso del 2024-2025, ma i livelli assoluti restano bassi. CCC+ per S&P e Fitch, Caa1 per Moody's: tutte classificazioni in territorio speculativo profondo, che segnalano vulnerabilità sostanziale e dipendenza da condizioni favorevoli per onorare gli impegni. L'investment grade, soglia che apre l'accesso agli investitori istituzionali con mandati conservativi, è ancora lontano e richiederebbe un percorso di stabilizzazione pluriennale senza discontinuità.</p>
+        <p><strong style="color: var(--text); font-weight: 500;">Bonar 2029N</strong><br>
+        Il Bonar 2029N rappresenta il primo test concreto del ritorno ai mercati. Una sovrascrizione del 42% è un segnale positivo, ma il prezzo di emissione a 91 centesimi, ossia sotto la pari, indica che il mercato sconta ancora un rischio residuo non trascurabile. Gli investitori sono tornati, ma con un premio di rischio esplicito incorporato nel prezzo.</p>
+      </div>
+    </div>
+
   </div>
 
   <div class="chart-wrap">
     <div class="chart-header">
-      <div class="chart-title">EMBI Argentina (punti base) · 2023–2026</div>
+      <div class="chart-title">EMBI Argentina (punti base) · 2024–2025</div>
       <div class="chart-source">Fonte: JP Morgan — EMBI</div>
     </div>
     <div class="chart-container">
       <canvas id="chartEmbi"></canvas>
+    </div>
+  </div>
+
+  <div class="fiscal-pills">
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">EMBI<br>gen. 2024</div>
+      <div class="fiscal-pill-value">1.964 bp</div>
+    </div>
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">EMBI<br>dic. 2025</div>
+      <div class="fiscal-pill-value">561 bp</div>
+    </div>
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Bonar 2029N<br>oversubscription</div>
+      <div class="fiscal-pill-value">+42%</div>
+    </div>
+    <div class="fiscal-pill">
+      <div class="fiscal-pill-label">Prezzo<br>emissione</div>
+      <div class="fiscal-pill-value">0.91</div>
     </div>
   </div>
 
@@ -808,6 +685,7 @@ footer {
       <div class="rating-from">da CC · fine 2023</div>
     </div>
   </div>
+
 </section>
 
 <!-- SEZIONE 9: CONCLUSIONI -->
@@ -815,17 +693,17 @@ footer {
   <div class="section-label">Sezione 9</div>
   <h2 class="section-title">Conclusioni e prospettive</h2>
   <div class="section-body">
-    <p>Nei primi due anni il governo Milei ha prodotto risultati macroeconomici significativi e documentati. La disinflazione è il risultato più robusto: l'inflazione mensile non scendeva sotto il 3% dall'agosto 2021. Il surplus fiscale primario è reale, ma in larga misura ciclico — dipendente dai tagli alla spesa e dall'erosione inflazionistica, non dall'espansione strutturale delle entrate.</p>
-    <p>La sostenibilità del programma dipende dalla capacità di trasformare la stabilizzazione in crescita reale. Senza espansione della base imponibile, i tagli alla spesa raggiungono un limite politico e sociale oltre il quale non si può andare. Il venire meno del surplus fiscale riaprirebbe la pressione sull'emissione monetaria — riattivando la spirale deficit–monetizzazione–inflazione documentata nel periodo pre-Milei.</p>
+    <p>Nei primi due anni il governo Milei ha prodotto risultati macroeconomici significativi e documentati. La disinflazione è il risultato più robusto: l'inflazione mensile non scendeva sotto il 3% dall'agosto 2021. Il surplus fiscale primario è reale, ma in larga misura ciclico, dipendente dai tagli alla spesa e dall'erosione inflazionistica, non dall'espansione strutturale delle entrate.</p>
+    <p>La sostenibilità del programma dipende dalla capacità di trasformare la stabilizzazione in crescita reale. Senza espansione della base imponibile, i tagli alla spesa raggiungono un limite politico e sociale oltre il quale non si può andare. Il venire meno del surplus fiscale riaprirebbe la pressione sull'emissione monetaria, riattivando la spirale deficit-monetizzazione-inflazione documentata nel periodo pre-Milei.</p>
+    <p>La stabilizzazione è reale, ma la crescita non si costruisce con i tagli. Il programma Milei ha interrotto un circolo vizioso, resta da dimostrare che possa avviarne uno virtuoso. Le variabili da monitorare nei prossimi mesi diranno se l'Argentina sta costruendo una base strutturale o consumando il capitale politico di una fase eccezionale.</p>
   </div>
-
   <div class="conclusion-grid">
     <div class="conclusion-card">
       <div class="conclusion-card-label">Risultati documentati</div>
-      <div class="conclusion-item">Disinflazione mensile: 25.5% → 2.7%</div>
+      <div class="conclusion-item">Disinflazione mensile: 25.5% → 2.8%</div>
       <div class="conclusion-item">Primo surplus primario in 14 anni</div>
       <div class="conclusion-item">Povertà sotto i livelli pre-Milei</div>
-      <div class="conclusion-item">EMBI: -1.596 bp da gen. 2024</div>
+      <div class="conclusion-item">EMBI: −1.403 bp da gen. 2024</div>
       <div class="conclusion-item">Ritorno sui mercati internazionali</div>
     </div>
     <div class="conclusion-card risk">
@@ -836,21 +714,40 @@ footer {
       <div class="conclusion-item">Scadenze debito 2026–2029</div>
       <div class="conclusion-item">Produttività e crescita reale assenti</div>
     </div>
+    <div class="conclusion-card monitor">
+      <div class="conclusion-card-label">Da monitorare</div>
+      <div class="conclusion-item">Riserve nette BCRA</div>
+      <div class="conclusion-item">Inflazione mensile — tenuta sotto 3%</div>
+      <div class="conclusion-item">Rinnovi paritarias 2026</div>
+      <div class="conclusion-item">Scadenze debito 2026 (~$15 mld)</div>
+      <div class="conclusion-item">PIL reale e produttività</div>
+    </div>
   </div>
 </section>
 
-<!-- SEZIONE IARI -->
+<!-- IARI -->
 <section id="iari" class="fade-in">
   <div class="section-label">Approfondimento geopolitico</div>
   <h2 class="section-title">Analisi IARI</h2>
-  <div class="iari-box">
-    <div class="iari-text-block">
-      <span class="iari-badge">In pubblicazione</span>
-      <div class="iari-title">Argentina contesa: litio, riserve e il doppio legame geopolitico</div>
-      <div class="iari-body">Un'analisi geopolitica del posizionamento argentino tra USA e Cina — dalla triangolazione strategica attorno al litio agli scenari futuri verso il 2029. Pubblicata su IARI — Istituto di Analisi delle Relazioni Internazionali.</div>
-      <a href="#" class="iari-link">Leggi l'analisi ↗</a>
+  <a href="https://iari.site/2026/03/21/dazi-usa-la-sezione-122-come-strumento-di-coercizione-negoziale/" target="_blank" rel="noopener" class="iari-card">
+    <div class="iari-card-logo">
+      <img src="../assets/IARI_Logo.png" alt="IARI" class="iari-card-logo-img">
+      <div class="iari-card-logo-url">iari.site</div>
     </div>
-  </div>
+    <div class="iari-card-content">
+      <div class="iari-card-meta">
+        <span class="iari-card-badge">Pubblicato</span>
+        <span class="iari-card-category">Geopolitica Economica</span>
+        <span class="iari-card-date">21 Marzo 2026</span>
+      </div>
+      <div class="iari-card-title">Dazi USA: la Sezione 122 come strumento di coercizione negoziale</div>
+      <div class="iari-card-abstract">L'attivazione della Sezione 122 segna il passaggio dal commercio alla coercizione geopolitica. Trump usa i dazi per rafforzare la dipendenza degli alleati all'economia statunitense. Tuttavia, la dipendenza industriale degli USA dalle importazioni e l'erosione del dollaro rischiano di compromettere la stabilità interna, favorendo l'emergere di blocchi commerciali autonomi.</div>
+      <div class="iari-card-footer">
+        <span class="iari-card-author">Vincenzo Ariete</span>
+        <span class="iari-card-btn">Leggi su IARI ↗</span>
+      </div>
+    </div>
+  </a>
 </section>
 
 </main>
@@ -859,227 +756,14 @@ footer {
   <div class="footer-name">Vincenzo</div>
   <div class="footer-sources">
     Fonti: INDEC · FMI WEO · Banca Mondiale · BCRA · Ministerio de Economía Argentina<br>
-    Dati aggiornati al primo trimestre 2026
+    Dati aggiornati a Dicembre 2025/Q1-2026
   </div>
 </footer>
 
-<script>
-const gold = '#C4A55A';
-const goldDim = '#8A7240';
-const goldLight = '#E8D5A3';
-const red = '#E05A5A';
-const green = '#5AB88A';
-const textMuted = '#6B6760';
-const bg3 = '#1C1F28';
-
-Chart.defaults.color = '#6B6760';
-Chart.defaults.borderColor = 'rgba(196,165,90,0.08)';
-Chart.defaults.font.family = "'DM Sans', sans-serif";
-Chart.defaults.font.size = 11;
-
-const tooltipPlugin = {
-  backgroundColor: '#14161C',
-  borderColor: 'rgba(196,165,90,0.3)',
-  borderWidth: 0.5,
-  titleColor: '#F0EDE6',
-  bodyColor: '#A8A499',
-  padding: 10,
-  cornerRadius: 4,
-};
-
-/* CHART FISCALE */
-new Chart(document.getElementById('chartFiscale'), {
-  type: 'bar',
-  data: {
-    labels: ['2022', '2023', '2024', '2025'],
-    datasets: [
-      {
-        label: 'Saldo primario',
-        data: [-2.00, -2.68, 1.78, 1.25],
-        backgroundColor: (ctx) => ctx.raw >= 0 ? green : red,
-        borderRadius: 3,
-        barPercentage: 0.5,
-      },
-      {
-        label: 'Saldo fiscale',
-        data: [-3.81, -4.38, 0.30, 0.15],
-        backgroundColor: (ctx) => ctx.raw >= 0 ? 'rgba(90,184,138,0.4)' : 'rgba(224,90,90,0.4)',
-        borderRadius: 3,
-        barPercentage: 0.5,
-      }
-    ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'top', labels: { boxWidth: 10, padding: 16, color: '#A8A499' } },
-      tooltip: { ...tooltipPlugin }
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: textMuted } },
-      y: {
-        grid: { color: 'rgba(196,165,90,0.06)' },
-        ticks: { color: textMuted, callback: v => v + '%' }
-      }
-    }
-  }
-});
-
-/* CHART INFLAZIONE */
-new Chart(document.getElementById('chartInflazione'), {
-  type: 'line',
-  data: {
-    labels: ['Gen 24','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic','Gen 25','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic 25'],
-    datasets: [{
-      label: 'Inflazione mensile (%)',
-      data: [20.6,13.2,11.0,8.8,4.2,4.6,4.0,4.2,3.5,2.4,2.4,2.7,2.2,2.4,3.7,3.0,3.3,3.3,3.0,3.5,3.5,3.0,2.4,2.8],
-      borderColor: gold,
-      backgroundColor: 'rgba(196,165,90,0.06)',
-      borderWidth: 1.5,
-      pointRadius: 2,
-      pointBackgroundColor: gold,
-      fill: true,
-      tension: 0.3,
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { ...tooltipPlugin, callbacks: { label: ctx => ctx.raw.toFixed(1) + '%' } }
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: textMuted, maxTicksLimit: 8 } },
-      y: {
-        grid: { color: 'rgba(196,165,90,0.06)' },
-        ticks: { color: textMuted, callback: v => v + '%' }
-      }
-    }
-  }
-});
-
-/* CHART DEBITO */
-new Chart(document.getElementById('chartDebito'), {
-  type: 'line',
-  data: {
-    labels: ['2020','2021','2022','2023','2024','2025 (p)','2026 (p)'],
-    datasets: [{
-      label: 'Debito/PIL (%)',
-      data: [103.8, 80.8, 84.8, 155.4, 85.3, 78.7, 73.0],
-      borderColor: goldDim,
-      backgroundColor: 'rgba(138,114,64,0.06)',
-      borderWidth: 1.5,
-      pointRadius: 3,
-      pointBackgroundColor: goldDim,
-      fill: true,
-      tension: 0.2,
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { ...tooltipPlugin, callbacks: { label: ctx => ctx.raw.toFixed(1) + '%' } }
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: textMuted } },
-      y: {
-        grid: { color: 'rgba(196,165,90,0.06)' },
-        ticks: { color: textMuted, callback: v => v + '%' }
-      }
-    }
-  }
-});
-
-/* CHART POVERTA */
-new Chart(document.getElementById('chartPoverta'), {
-  type: 'line',
-  data: {
-    labels: ['II sem 2022','I sem 2023','II sem 2023','I sem 2024','II sem 2024','I sem 2025'],
-    datasets: [{
-      label: 'Tasso di povertà (%)',
-      data: [39.2, 40.1, 41.7, 52.9, 38.1, 31.6],
-      borderColor: gold,
-      backgroundColor: 'rgba(196,165,90,0.06)',
-      borderWidth: 1.5,
-      pointRadius: 4,
-      pointBackgroundColor: (ctx) => {
-        const v = ctx.raw;
-        if (v === 52.9) return red;
-        if (v === 31.6) return green;
-        return gold;
-      },
-      fill: true,
-      tension: 0.2,
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { ...tooltipPlugin, callbacks: { label: ctx => ctx.raw.toFixed(1) + '%' } }
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: textMuted } },
-      y: {
-        grid: { color: 'rgba(196,165,90,0.06)' },
-        min: 25,
-        ticks: { color: textMuted, callback: v => v + '%' }
-      }
-    }
-  }
-});
-
-/* CHART EMBI */
-new Chart(document.getElementById('chartEmbi'), {
-  type: 'line',
-  data: {
-    labels: ['Gen 24','Mar 24','Giu 24','Set 24','Dic 24','Mar 25','Giu 25','Set 25','Dic 25','Mar 26'],
-    datasets: [{
-      label: 'EMBI (bp)',
-      data: [1907, 1500, 1400, 1100, 800, 900, 700, 600, 550, 311],
-      borderColor: green,
-      backgroundColor: 'rgba(90,184,138,0.05)',
-      borderWidth: 1.5,
-      pointRadius: 3,
-      pointBackgroundColor: green,
-      fill: true,
-      tension: 0.3,
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { ...tooltipPlugin, callbacks: { label: ctx => ctx.raw + ' bp' } }
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: textMuted } },
-      y: {
-        grid: { color: 'rgba(196,165,90,0.06)' },
-        ticks: { color: textMuted, callback: v => v + ' bp' }
-      }
-    }
-  }
-});
-
-/* SCROLL FADE IN */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="../js/core/charts-config.js"></script>
+<script src="../js/pages/argentina/charts.js"></script>
+<script src="../js/core/animations.js"></script>
 
 </body>
 </html>

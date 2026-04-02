@@ -1,0 +1,123 @@
+/* ================================================
+   LAVORI — WORK LIST (layout B, border-left)
+   ================================================ */
+
+.work-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+  border-left: 2px solid var(--gold-dim);
+  border-radius: 0 8px 8px 0;
+  text-decoration: none;
+  overflow: hidden;
+  transition: background 0.2s, border-left-color 0.2s;
+}
+
+.work-card:hover {
+  background: var(--bg3);
+  border-left-color: var(--gold);
+}
+
+.work-card-body {
+  padding: 28px 28px 20px 28px;
+}
+
+.work-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.work-tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+.work-year {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text3);
+}
+
+.work-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.work-desc {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.75;
+  margin: 0 0 20px 0;
+}
+
+.work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.work-pill {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text3);
+  background: var(--bg3);
+  border: 0.5px solid var(--border2);
+  border-radius: 3px;
+  padding: 3px 8px;
+}
+
+.work-card-footer {
+  padding: 14px 28px;
+  border-top: 0.5px solid var(--border2);
+}
+
+.work-link {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  font-family: var(--font-mono);
+  transition: color 0.2s;
+}
+
+.work-card:hover .work-link {
+  color: var(--gold);
+}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+
+@media (max-width: 600px) {
+  .work-card-body {
+    padding: 20px 20px 16px 20px;
+  }
+
+  .work-card-footer {
+    padding: 12px 20px;
+  }
+
+  .work-title {
+    font-size: 22px;
+  }
+}
