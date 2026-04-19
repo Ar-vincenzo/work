@@ -101,6 +101,7 @@ nav {
   position: fixed;
   top: 56px;
   left: 0; right: 0;
+  height: auto;
   z-index: 99;
   background: var(--nav-mobile-bg);
   backdrop-filter: blur(12px);
