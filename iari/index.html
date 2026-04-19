@@ -11,28 +11,36 @@
   <link rel="stylesheet" href="../css/core/layout.css">
   <link rel="stylesheet" href="../css/core/components.css">
   <link rel="stylesheet" href="../css/pages/iari/iari.css">
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark');</script>
 </head>
-<body>
+<body data-page-title="iari-title">
 
 <!-- NAV -->
 <nav>
   <a href="../" class="nav-logo">Vincenzo Ariete</a>
   <ul class="nav-links">
-    <li><a href="../lavori/">Lavori</a></li>
-    <li><a href="./" class="active">Analisi IARI</a></li>
-    <li><a href="../#contatti">Contatti</a></li>
+    <li><a href="../lavori/" data-i18n="nav.lavori">Lavori</a></li>
+    <li><a href="./" class="active" data-i18n="nav.iari">Analisi IARI</a></li>
+    <li><a href="../#contatti" data-i18n="nav.contatti">Contatti</a></li>
   </ul>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-controls">
+    <button class="lang-toggle" id="langToggle">EN</button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Passa alla modalità chiara">
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="7.05" y2="7.05"/><line x1="16.95" y1="16.95" x2="19.07" y2="19.07"/><line x1="4.93" y1="19.07" x2="7.05" y2="16.95"/><line x1="16.95" y1="7.05" x2="19.07" y2="4.93"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- MOBILE MENU -->
 <nav class="nav-mobile" id="navMobile">
   <a href="../" class="nav-mobile-top" id="navMobileTop">Vincenzo Ariete</a>
-  <a href="../lavori/">Lavori</a>
-  <a href="./" class="active">Analisi IARI</a>
-  <a href="../#contatti">Contatti</a>
+  <a href="../lavori/" data-i18n="nav.lavori">Lavori</a>
+  <a href="./" class="active" data-i18n="nav.iari">Analisi IARI</a>
+  <a href="../#contatti" data-i18n="nav.contatti">Contatti</a>
 </nav>
 
 <main>
@@ -42,9 +50,9 @@
     <div class="iari-header">
       <img src="../assets/IARI_Logo.png" alt="IARI" class="iari-logo">
       <div class="iari-header-text">
-        <p class="section-label">Pubblicazioni</p>
-        <h1 class="section-title">Analisi IARI</h1>
-        <p class="section-body">Analisi geopolitiche ed economiche pubblicate presso l'Istituto di Analisi delle Relazioni Internazionali. I testi originali sono ospitati su <a href="https://iari.site" target="_blank" rel="noopener">iari.site</a>.</p>
+        <p class="section-label" data-i18n="iari.label">Pubblicazioni</p>
+        <h1 class="section-title" data-i18n="iari.title">Analisi IARI</h1>
+        <p class="section-body" data-i18n="iari.body">Analisi geopolitiche ed economiche pubblicate presso l'Istituto di Analisi delle Relazioni Internazionali. I testi originali sono ospitati su <a href="https://iari.site" target="_blank" rel="noopener">iari.site</a>.</p>
       </div>
     </div>
   </section>
@@ -55,33 +63,32 @@
 
       <a href="#" class="article-item article-item--placeholder">
         <div class="article-item-header">
-          <span class="article-topic">Geopolitica · Italia · Africa · Energia</span>
-          <span class="article-date">In arrivo</span>
+          <span class="article-topic" data-i18n="iari.art3.topic">Geopolitica · Italia · Africa · Energia</span>
+          <span class="article-date" data-i18n="home.iari.coming">In arrivo</span>
         </div>
-        <h2 class="article-title">Piano Mattei: cooperazione paritaria e interessi strategici in un'Africa contesa</h2>
-        <p class="article-abstract">Il Piano Mattei si inserisce nella ridefinizione della sicurezza energetica italiana, imponendo un riposizionamento dal fronte russo a quello africano, trasformando la necessità di nuovi approvvigionamenti in una proiezione geopolitica. Tramite questo piano Roma punta ad inserirsi nel contesto africano in cui sono presenti i modelli estrattivi di Russia e Cina, offrendosi come alternativa con l'approccio della cooperazione paritaria. La stabilità del progetto dipenderà dalla capacità di convertire la posizione geografica italiana in interdipendenza strutturale per l'Africa. L'assenza di leve coercitive espone l'Italia al rischio di un investimento a fondo perduto privo di ritorno strategico.</p>
-        <span class="article-read">Prossimamente su IARI</span>
+        <h2 class="article-title" data-i18n="iari.art3.title">Piano Mattei: cooperazione paritaria e interessi strategici in un'Africa contesa</h2>
+        <p class="article-abstract" data-i18n="iari.art3.abstract">Il Piano Mattei si inserisce nella ridefinizione della sicurezza energetica italiana, imponendo un riposizionamento dal fronte russo a quello africano, trasformando la necessità di nuovi approvvigionamenti in una proiezione geopolitica. Tramite questo piano Roma punta ad inserirsi nel contesto africano in cui sono presenti i modelli estrattivi di Russia e Cina, offrendosi come alternativa con l'approccio della cooperazione paritaria. La stabilità del progetto dipenderà dalla capacità di convertire la posizione geografica italiana in interdipendenza strutturale per l'Africa. L'assenza di leve coercitive espone l'Italia al rischio di un investimento a fondo perduto privo di ritorno strategico.</p>
+        <span class="article-read" data-i18n="iari.art3.coming">Prossimamente su IARI</span>
       </a>
 
       <a href="https://iari.site/2026/04/18/argentina-contesa-litio-riserve-e-il-doppio-legame-geopolitico/" target="_blank" rel="noopener" class="article-item">
         <div class="article-item-header">
-          <span class="article-topic">Geopolitica · America Latina</span>
-          <span class="article-date">18 Aprile 2026</span>
+          <span class="article-topic" data-i18n="iari.art1.topic">Geopolitica · America Latina</span>
+          <span class="article-date" data-i18n="iari.art1.date">18 Aprile 2026</span>
         </div>
-        <h2 class="article-title">Argentina contesa: litio, riserve e il doppio legame geopolitico</h2>
-        <p class="article-abstract">L’analisi delle politiche di Milei rivela una divergenza tra atlantismo ideologico e pragmatismo geopolitico. Nonostante l’Argentina punti al supporto finanziario e militare statunitense per stabilizzare l’economia, rimane vincolata alla Cina per la liquidità degli swap e per gli investimenti in infrastrutture critiche. Sfruttando la propria contendibilità strategica, con grandi riserve di litio ed una posizione atlantica favorevole, il governo prova a massimizzare i benefici economici derivanti dalla triangolazione geopolitica. Questa strategia è messa a rischio da fratture politiche interne e da una possibile separazione forzata che trasformerebbe l’Argentina da soggetto attivo della contesa a terreno di scontro.</p>
-        <span class="article-read">Leggi su IARI ↗</span>
+        <h2 class="article-title" data-i18n="iari.art1.title">Argentina contesa: litio, riserve e il doppio legame geopolitico</h2>
+        <p class="article-abstract" data-i18n="iari.art1.abstract">L'analisi delle politiche di Milei rivela una divergenza tra atlantismo ideologico e pragmatismo geopolitico. Nonostante l'Argentina punti al supporto finanziario e militare statunitense per stabilizzare l'economia, rimane vincolata alla Cina per la liquidità degli swap e per gli investimenti in infrastrutture critiche. Sfruttando la propria contendibilità strategica, con grandi riserve di litio ed una posizione atlantica favorevole, il governo prova a massimizzare i benefici economici derivanti dalla triangolazione geopolitica. Questa strategia è messa a rischio da fratture politiche interne e da una possibile separazione forzata che trasformerebbe l'Argentina da soggetto attivo della contesa a terreno di scontro.</p>
+        <span class="article-read" data-i18n="iari.art1.read">Leggi su IARI ↗</span>
       </a>
 
-      
       <a href="https://iari.site/2026/03/21/dazi-usa-la-sezione-122-come-strumento-di-coercizione-negoziale/" target="_blank" rel="noopener" class="article-item">
         <div class="article-item-header">
-          <span class="article-topic">Economia internazionale · Politica commerciale</span>
-          <span class="article-date">21 Marzo 2026</span>
+          <span class="article-topic" data-i18n="iari.art2.topic">Economia internazionale · Politica commerciale</span>
+          <span class="article-date" data-i18n="iari.art2.date">21 Marzo 2026</span>
         </div>
-        <h2 class="article-title">Dazi USA: la Sezione 122 come strumento di coercizione negoziale</h2>
-        <p class="article-abstract">La Sezione 122 del Trade Act del 1974 conferisce al presidente degli Stati Uniti il potere di imporre dazi di emergenza fino al 15% su tutte le importazioni per un periodo di 150 giorni, senza necessità di approvazione congressuale. Storicamente inutilizzata, questa norma è tornata al centro del dibattito come potenziale strumento di pressione nelle trattative commerciali bilaterali. L'analisi esamina la portata giuridica della disposizione, i precedenti storici e le implicazioni strategiche di un suo possibile utilizzo nell'attuale contesto di escalation tariffaria.</p>
-        <span class="article-read">Leggi su IARI ↗</span>
+        <h2 class="article-title" data-i18n="iari.art2.title">Dazi USA: la Sezione 122 come strumento di coercizione negoziale</h2>
+        <p class="article-abstract" data-i18n="iari.art2.abstract">La Sezione 122 del Trade Act del 1974 conferisce al presidente degli Stati Uniti il potere di imporre dazi di emergenza fino al 15% su tutte le importazioni per un periodo di 150 giorni, senza necessità di approvazione congressuale. Storicamente inutilizzata, questa norma è tornata al centro del dibattito come potenziale strumento di pressione nelle trattative commerciali bilaterali. L'analisi esamina la portata giuridica della disposizione, i precedenti storici e le implicazioni strategiche di un suo possibile utilizzo nell'attuale contesto di escalation tariffaria.</p>
+        <span class="article-read" data-i18n="iari.art2.read">Leggi su IARI ↗</span>
       </a>
 
     </div>
@@ -91,9 +98,12 @@
 
 <footer>
   <span class="footer-name">Vincenzo Ariete</span>
-  <span class="footer-sources">pubblicazioni · IARI</span>
+  <span class="footer-sources" data-i18n="iari.footer">pubblicazioni · IARI</span>
 </footer>
 
+<script src="../js/core/theme.js"></script>
+<script src="../js/translations/translations.js"></script>
+<script src="../js/core/lang.js"></script>
 <script src="../js/core/animations.js"></script>
 
 </body>

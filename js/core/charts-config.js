@@ -1,41 +1,58 @@
 const ChartConfig = (() => {
 
-  const colors = {
-    gold: '#C4A55A',
-    goldDim: '#8A7240',
-    goldLight: '#E8D5A3',
-    red: '#E05A5A',
-    green: '#5AB88A',
-    textMuted: '#6B6760',
-    bg2: '#14161C',
-    gridLine: 'rgba(196,165,90,0.06)',
-    borderLine: 'rgba(196,165,90,0.08)',
-  };
+  const _registry = [];
 
-  const tooltip = {
-    backgroundColor: '#14161C',
-    borderColor: 'rgba(196,165,90,0.3)',
-    borderWidth: 0.5,
-    titleColor: '#F0EDE6',
-    bodyColor: '#A8A499',
-    padding: 10,
-    cornerRadius: 4,
-  };
+  function css(varName) {
+    return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+  }
 
-  const defaultScales = {
-    x: {
-      grid: { display: false },
-      ticks: { color: colors.textMuted, maxTicksLimit: 10 },
-    },
-    y: {
-      grid: { color: colors.gridLine },
-      ticks: { color: colors.textMuted },
-    },
-  };
+  function getColors() {
+    return {
+      gold:       css('--chart-gold'),
+      goldDim:    css('--chart-gold-dim'),
+      red:        css('--chart-red'),
+      green:      css('--chart-green'),
+      textMuted:  css('--chart-text-muted'),
+      bg:         css('--chart-bg'),
+      gridLine:   css('--chart-grid'),
+      borderLine: css('--chart-border'),
+      gradient:   css('--chart-gradient'),
+      gradientDim: css('--chart-gradient-dim'),
+    };
+  }
+
+  function getTooltip() {
+    return {
+      backgroundColor: css('--chart-tooltip-bg'),
+      borderColor:     css('--chart-border'),
+      borderWidth:     0.5,
+      titleColor:      css('--chart-tooltip-title'),
+      bodyColor:       css('--chart-tooltip-body'),
+      padding:         10,
+      cornerRadius:    4,
+    };
+  }
+
+  function getScales(overrides = {}) {
+    const c = getColors();
+    return {
+      x: {
+        grid: { display: false },
+        ticks: { color: c.textMuted, maxTicksLimit: 10 },
+        ...overrides.x,
+      },
+      y: {
+        grid: { color: c.gridLine },
+        ticks: { color: c.textMuted },
+        ...overrides.y,
+      },
+    };
+  }
 
   function applyDefaults() {
-    Chart.defaults.color = colors.textMuted;
-    Chart.defaults.borderColor = colors.borderLine;
+    const c = getColors();
+    Chart.defaults.color = c.textMuted;
+    Chart.defaults.borderColor = c.borderLine;
     Chart.defaults.font.family = "'DM Sans', sans-serif";
     Chart.defaults.font.size = 11;
   }
@@ -43,7 +60,6 @@ const ChartConfig = (() => {
   function make(id, type, labels, datasets, options = {}) {
     const el = document.getElementById(id);
     if (!el) return null;
-
     return new Chart(el, {
       type,
       data: { labels, datasets },
@@ -52,9 +68,9 @@ const ChartConfig = (() => {
         maintainAspectRatio: false,
         plugins: {
           legend: { display: false },
-          tooltip,
+          tooltip: getTooltip(),
         },
-        scales: defaultScales,
+        scales: getScales(),
         ...options,
       },
     });
@@ -64,7 +80,7 @@ const ChartConfig = (() => {
     return {
       data,
       borderColor: color,
-      backgroundColor: color.replace(')', ', 0.06)').replace('rgb', 'rgba'),
+      backgroundColor: 'transparent',
       borderWidth: 1.5,
       pointRadius: 3,
       pointBackgroundColor: color,
@@ -84,6 +100,31 @@ const ChartConfig = (() => {
     };
   }
 
-  return { colors, tooltip, defaultScales, applyDefaults, make, lineDataset, barDataset };
+  /* Gradient helper — crea gradient basato sul tema corrente */
+  function makeGradient(ctx, colorVar, height = 320) {
+    const grad = ctx.createLinearGradient(0, 0, 0, height);
+    grad.addColorStop(0, css(colorVar));
+    grad.addColorStop(1, 'transparent');
+    return grad;
+  }
+
+  /* Registra un grafico: buildFn viene chiamata subito e ad ogni cambio tema */
+  function register(id, buildFn) {
+    _registry.push({ id, buildFn });
+    buildFn();
+  }
+
+  function rebuildAll() {
+    applyDefaults();
+    _registry.forEach(({ id, buildFn }) => {
+      const existing = Chart.getChart(id);
+      if (existing) existing.destroy();
+      buildFn();
+    });
+  }
+
+  document.addEventListener('theme-change', rebuildAll);
+
+  return { getColors, getTooltip, getScales, applyDefaults, make, lineDataset, barDataset, makeGradient, register };
 
 })();

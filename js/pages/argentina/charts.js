@@ -2,79 +2,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ChartConfig.applyDefaults();
 
-  const { colors, tooltip, make, lineDataset, barDataset } = ChartConfig;
+  const pct  = v => v + '%';
+  const pctL = ctx => ctx.raw.toFixed(1) + '%';
 
-  const percentTick = v => v + '%';
-  const percentLabel = ctx => ctx.raw.toFixed(1) + '%';
+  /* ── FISCALE ─────────────────────────────────────────── */
+  ChartConfig.register('chartFiscale', () => {
+    const c = ChartConfig.getColors();
+    ChartConfig.make(
+      'chartFiscale', 'bar',
+      ['2022', '2023', '2024', '2025'],
+      [
+        ChartConfig.barDataset(
+          [-2.00, -2.68, 1.78, 1.25],
+          ctx => ctx.raw >= 0 ? c.green : c.red,
+          { label: 'Saldo primario' }
+        ),
+        ChartConfig.barDataset(
+          [-3.81, -4.38, 0.30, 0.15],
+          ctx => ctx.raw >= 0 ? c.green + '66' : c.red + '66',
+          { label: 'Saldo fiscale' }
+        ),
+      ],
+      {
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            labels: { boxWidth: 10, padding: 16, color: c.textMuted },
+            onClick: (e, legendItem, legend) => {
+              const ci = legend.chart;
+              const clickedIndex = legendItem.datasetIndex;
+              const otherIndex = clickedIndex === 0 ? 1 : 0;
+              const otherMeta = ci.getDatasetMeta(otherIndex);
+              const clickedMeta = ci.getDatasetMeta(clickedIndex);
+              if (otherMeta.hidden) {
+                ci.data.datasets.forEach((_, i) => { ci.getDatasetMeta(i).hidden = false; });
+              } else {
+                clickedMeta.hidden = false;
+                otherMeta.hidden = true;
+              }
+              ci.update();
+            },
+          },
+          tooltip: {
+            ...ChartConfig.getTooltip(),
+            callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw.toFixed(2) + '%' },
+          },
+        },
+        scales: ChartConfig.getScales({
+          y: { ticks: { callback: pct } },
+        }),
+      }
+    );
+  });
 
-  const yPercent = {
-    grid: { color: colors.gridLine },
-    ticks: { color: colors.textMuted, callback: percentTick },
-  };
-
-/* FISCALE */
-make(
-  'chartFiscale', 'bar',
-  ['2022', '2023', '2024', '2025'],
-  [
-    barDataset(
-      [-2.00, -2.68, 1.78, 1.25],
-      ctx => ctx.raw >= 0 ? colors.green : colors.red,
-      { label: 'Saldo primario' }
-    ),
-    barDataset(
-      [-3.81, -4.38, 0.30, 0.15],
-      ctx => ctx.raw >= 0 ? 'rgba(90,184,138,0.4)' : 'rgba(224,90,90,0.4)',
-      { label: 'Saldo fiscale' }
-    ),
-  ],
-  {
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-        labels: { boxWidth: 10, padding: 16, color: '#A8A499' },
-        onClick: (e, legendItem, legend) => {
-          const ci = legend.chart;
-          const clickedIndex = legendItem.datasetIndex;
-          const otherIndex = clickedIndex === 0 ? 1 : 0;
-          const otherMeta = ci.getDatasetMeta(otherIndex);
-          const clickedMeta = ci.getDatasetMeta(clickedIndex);
-
-          if (otherMeta.hidden) {
-            // Already in isolated view — restore both
-            ci.data.datasets.forEach((ds, i) => {
-              ci.getDatasetMeta(i).hidden = false;
-            });
-          } else {
-            // Normal state — isolate clicked, hide other
-            clickedMeta.hidden = false;
-            otherMeta.hidden = true;
-          }
-          ci.update();
-        }
-      },
-      tooltip: {
-        ...tooltip,
-        callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw.toFixed(2) + '%' },
-      },
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: colors.textMuted } },
-      y: { grid: { color: colors.gridLine }, ticks: { color: colors.textMuted, callback: v => v + '%' } }
-    },
-  }
-);
-
-  /* INFLAZIONE MENSILE */
-  const inflEl = document.getElementById('chartInflazione');
-  if (inflEl) {
-    const inflCtx = inflEl.getContext('2d');
-    const inflGradient = inflCtx.createLinearGradient(0, 0, 0, 320);
-    inflGradient.addColorStop(0, 'rgba(196,165,90,0.25)');
-    inflGradient.addColorStop(1, 'rgba(196,165,90,0)');
-
-    new Chart(inflEl, {
+  /* ── INFLAZIONE MENSILE ───────────────────────────────── */
+  ChartConfig.register('chartInflazione', () => {
+    const c   = ChartConfig.getColors();
+    const el  = document.getElementById('chartInflazione');
+    if (!el) return;
+    const grad = ChartConfig.makeGradient(el.getContext('2d'), '--chart-gradient');
+    new Chart(el, {
       type: 'line',
       data: {
         labels: [
@@ -90,11 +78,11 @@ make(
             20.6,13.2,11.0,8.8,4.2,4.6,4.0,4.2,3.5,2.4,2.4,2.7,
             2.2,2.4,3.7,3.0,3.3,3.3,3.0,3.5,3.5,3.0,2.4,2.8,
           ],
-          borderColor: colors.gold,
-          backgroundColor: inflGradient,
+          borderColor: c.gold,
+          backgroundColor: grad,
           borderWidth: 1.5,
           pointRadius: 3,
-          pointBackgroundColor: colors.gold,
+          pointBackgroundColor: c.gold,
           fill: true,
           tension: 0.3,
         }],
@@ -104,58 +92,50 @@ make(
         maintainAspectRatio: false,
         plugins: {
           legend: { display: false },
-          tooltip: { ...tooltip, callbacks: { label: percentLabel } },
+          tooltip: { ...ChartConfig.getTooltip(), callbacks: { label: pctL } },
         },
-        scales: {
-          x: { grid: { display: false }, ticks: { color: colors.textMuted, maxTicksLimit: 12 } },
-          y: yPercent,
-        },
+        scales: ChartConfig.getScales({
+          x: { ticks: { maxTicksLimit: 12 } },
+          y: { ticks: { callback: pct } },
+        }),
       },
     });
-  }
+  });
 
-  /* INFLAZIONE ANNUA */
-  make(
-    'chartInflazioneAnnua', 'bar',
-    ['2022', '2023', '2024', '2025'],
-    [
-      barDataset(
-        [94.8, 211.4, 117.8, 31.5],
-        colors.gold,
-        { label: 'Inflazione annua (%)' }
-      ),
-    ],
-    {
-      plugins: {
-        legend: { display: false },
-        tooltip: { ...tooltip, callbacks: { label: ctx => ctx.raw.toFixed(1) + '%' } },
-      },
-      scales: {
-        x: { grid: { display: false }, ticks: { color: colors.textMuted } },
-        y: yPercent,
-      },
-    }
-  );
+  /* ── INFLAZIONE ANNUA ────────────────────────────────── */
+  ChartConfig.register('chartInflazioneAnnua', () => {
+    const c = ChartConfig.getColors();
+    ChartConfig.make(
+      'chartInflazioneAnnua', 'bar',
+      ['2022', '2023', '2024', '2025'],
+      [ChartConfig.barDataset([94.8, 211.4, 117.8, 31.5], c.gold, { label: 'Inflazione annua (%)' })],
+      {
+        plugins: {
+          legend: { display: false },
+          tooltip: { ...ChartConfig.getTooltip(), callbacks: { label: ctx => ctx.raw.toFixed(1) + '%' } },
+        },
+        scales: ChartConfig.getScales({ y: { ticks: { callback: pct } } }),
+      }
+    );
+  });
 
-  /* DEBITO */
-  const debitoEl = document.getElementById('chartDebito');
-  if (debitoEl) {
-    const debitoCtx = debitoEl.getContext('2d');
-    const debitoGradient = debitoCtx.createLinearGradient(0, 0, 0, 320);
-    debitoGradient.addColorStop(0, 'rgba(138,114,64,0.25)');
-    debitoGradient.addColorStop(1, 'rgba(138,114,64,0)');
-
-    new Chart(debitoEl, {
+  /* ── DEBITO ──────────────────────────────────────────── */
+  ChartConfig.register('chartDebito', () => {
+    const c   = ChartConfig.getColors();
+    const el  = document.getElementById('chartDebito');
+    if (!el) return;
+    const grad = ChartConfig.makeGradient(el.getContext('2d'), '--chart-gradient-dim');
+    new Chart(el, {
       type: 'line',
       data: {
         labels: ['2020','2021','2022','2023','2024','2025 (p)','2026 (p)'],
         datasets: [{
           data: [103.8, 80.8, 84.8, 155.4, 85.3, 78.7, 73.0],
-          borderColor: colors.goldDim,
-          backgroundColor: debitoGradient,
+          borderColor: c.goldDim,
+          backgroundColor: grad,
           borderWidth: 1.5,
           pointRadius: 3,
-          pointBackgroundColor: colors.goldDim,
+          pointBackgroundColor: c.goldDim,
           fill: true,
           tension: 0.3,
         }],
@@ -165,38 +145,33 @@ make(
         maintainAspectRatio: false,
         plugins: {
           legend: { display: false },
-          tooltip: { ...tooltip, callbacks: { label: percentLabel } },
+          tooltip: { ...ChartConfig.getTooltip(), callbacks: { label: pctL } },
         },
-        scales: {
-          x: { grid: { display: false }, ticks: { color: colors.textMuted } },
-          y: yPercent,
-        },
+        scales: ChartConfig.getScales({
+          x: { ticks: {} },
+          y: { ticks: { callback: pct } },
+        }),
       },
     });
-  }
+  });
 
-  /* POVERTÀ */
-  const povertaEl = document.getElementById('chartPoverta');
-  if (povertaEl) {
-    const povertaCtx = povertaEl.getContext('2d');
-    const povertaGradient = povertaCtx.createLinearGradient(0, 0, 0, 320);
-    povertaGradient.addColorStop(0, 'rgba(196,165,90,0.25)');
-    povertaGradient.addColorStop(1, 'rgba(196,165,90,0)');
-
-    new Chart(povertaEl, {
+  /* ── POVERTÀ ─────────────────────────────────────────── */
+  ChartConfig.register('chartPoverta', () => {
+    const c   = ChartConfig.getColors();
+    const el  = document.getElementById('chartPoverta');
+    if (!el) return;
+    const grad = ChartConfig.makeGradient(el.getContext('2d'), '--chart-gradient');
+    new Chart(el, {
       type: 'line',
       data: {
         labels: ['II sem 2022','I sem 2023','II sem 2023','I sem 2024','II sem 2024','I sem 2025','II sem 2025'],
         datasets: [{
           data: [39.2, 40.1, 41.7, 52.9, 38.1, 31.6, 28.2],
-          borderColor: colors.gold,
-          backgroundColor: povertaGradient,
+          borderColor: c.gold,
+          backgroundColor: grad,
           borderWidth: 1.5,
           pointRadius: 4,
-          pointBackgroundColor: [
-            colors.goldDim, colors.goldDim, colors.goldDim,
-            colors.red, colors.gold, colors.green, colors.green,
-          ],
+          pointBackgroundColor: [c.goldDim, c.goldDim, c.goldDim, c.red, c.gold, c.green, c.green],
           fill: true,
           tension: 0.3,
         }],
@@ -206,25 +181,22 @@ make(
         maintainAspectRatio: false,
         plugins: {
           legend: { display: false },
-          tooltip: { ...tooltip, callbacks: { label: percentLabel } },
+          tooltip: { ...ChartConfig.getTooltip(), callbacks: { label: pctL } },
         },
-        scales: {
-          x: { grid: { display: false }, ticks: { color: colors.textMuted } },
-          y: { min: 25, grid: { color: colors.gridLine }, ticks: { color: colors.textMuted, callback: percentTick } },
-        },
+        scales: ChartConfig.getScales({
+          y: { min: 25, ticks: { callback: pct } },
+        }),
       },
     });
-  }
+  });
 
-  /* EMBI */
-  const embiEl = document.getElementById('chartEmbi');
-  if (embiEl) {
-    const embiCtx = embiEl.getContext('2d');
-    const embiGradient = embiCtx.createLinearGradient(0, 0, 0, 320);
-    embiGradient.addColorStop(0, 'rgba(196,165,90,0.25)');
-    embiGradient.addColorStop(1, 'rgba(196,165,90,0)');
-
-    new Chart(embiEl, {
+  /* ── EMBI ────────────────────────────────────────────── */
+  ChartConfig.register('chartEmbi', () => {
+    const c   = ChartConfig.getColors();
+    const el  = document.getElementById('chartEmbi');
+    if (!el) return;
+    const grad = ChartConfig.makeGradient(el.getContext('2d'), '--chart-gradient');
+    new Chart(el, {
       type: 'line',
       data: {
         labels: [
@@ -233,14 +205,14 @@ make(
         ],
         datasets: [{
           data: [
-            1964, 1702, 1452, 1215, 1341, 1455, 1510, 1433, 1284, 984, 755, 635,
-            625, 784, 819, 722, 678, 701, 730, 829, 1222, 662, 645, 561,
+            1964,1702,1452,1215,1341,1455,1510,1433,1284,984,755,635,
+            625,784,819,722,678,701,730,829,1222,662,645,561,
           ],
-          borderColor: colors.gold,
-          backgroundColor: embiGradient,
+          borderColor: c.gold,
+          backgroundColor: grad,
           borderWidth: 1.5,
           pointRadius: 3,
-          pointBackgroundColor: colors.gold,
+          pointBackgroundColor: c.gold,
           fill: true,
           tension: 0.3,
         }],
@@ -250,14 +222,14 @@ make(
         maintainAspectRatio: false,
         plugins: {
           legend: { display: false },
-          tooltip: { ...tooltip, callbacks: { label: ctx => ctx.raw + ' bp' } },
+          tooltip: { ...ChartConfig.getTooltip(), callbacks: { label: ctx => ctx.raw + ' bp' } },
         },
-        scales: {
-          x: { grid: { display: false }, ticks: { color: colors.textMuted, maxTicksLimit: 12 } },
-          y: { grid: { color: colors.gridLine }, ticks: { color: colors.textMuted, callback: v => v + ' bp' } },
-        },
+        scales: ChartConfig.getScales({
+          x: { ticks: { maxTicksLimit: 12 } },
+          y: { ticks: { callback: v => v + ' bp' } },
+        }),
       },
     });
-  }
+  });
 
 });

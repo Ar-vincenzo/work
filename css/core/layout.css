@@ -3,7 +3,7 @@ nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(14,15,19,0.92);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   border-bottom: 0.5px solid var(--border);
   padding: 0 2rem;
@@ -102,7 +102,7 @@ nav {
   top: 56px;
   left: 0; right: 0;
   z-index: 99;
-  background: rgba(14,15,19,0.98);
+  background: var(--nav-mobile-bg);
   backdrop-filter: blur(12px);
   border-bottom: 0.5px solid var(--border);
   padding: 16px 0;
@@ -206,6 +206,76 @@ footer {
   text-align: right;
   line-height: 1.8;
 }
+
+/* NAV CONTROLS GROUP */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* LANG TOGGLE */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 3px;
+  border: 0.5px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  color: var(--text3);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.lang-toggle:hover {
+  background: var(--bg3);
+  border-color: var(--gold-dim);
+  color: var(--gold);
+}
+
+/* THEME TOGGLE */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 0.5px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  color: var(--text3);
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.theme-toggle:hover {
+  background: var(--bg3);
+  border-color: var(--gold-dim);
+  color: var(--gold);
+}
+
+.theme-toggle svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.icon-moon { display: none; }
+.icon-sun  { display: block; }
+
+[data-theme="light"] .icon-moon { display: block; }
+[data-theme="light"] .icon-sun  { display: none; }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {

@@ -11,36 +11,44 @@
   <link rel="stylesheet" href="../css/core/layout.css">
   <link rel="stylesheet" href="../css/core/components.css">
   <link rel="stylesheet" href="../css/pages/lavori/lavori.css">
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark');</script>
 </head>
-<body>
+<body data-page-title="lavori-title">
 
 <!-- NAV -->
 <nav>
   <a href="../" class="nav-logo">Vincenzo Ariete</a>
   <ul class="nav-links">
-    <li><a href="./" class="active">Lavori</a></li>
-    <li><a href="../iari/">Analisi IARI</a></li>
-    <li><a href="../#contatti">Contatti</a></li>
+    <li><a href="./" class="active" data-i18n="nav.lavori">Lavori</a></li>
+    <li><a href="../iari/" data-i18n="nav.iari">Analisi IARI</a></li>
+    <li><a href="../#contatti" data-i18n="nav.contatti">Contatti</a></li>
   </ul>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-controls">
+    <button class="lang-toggle" id="langToggle">EN</button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Passa alla modalità chiara">
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="7.05" y2="7.05"/><line x1="16.95" y1="16.95" x2="19.07" y2="19.07"/><line x1="4.93" y1="19.07" x2="7.05" y2="16.95"/><line x1="16.95" y1="7.05" x2="19.07" y2="4.93"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- MOBILE MENU -->
 <nav class="nav-mobile" id="navMobile">
   <a href="../" class="nav-mobile-top" id="navMobileTop">Vincenzo Ariete</a>
-  <a href="./" class="active">Lavori</a>
-  <a href="../iari/">Analisi IARI</a>
-  <a href="../#contatti">Contatti</a>
+  <a href="./" class="active" data-i18n="nav.lavori">Lavori</a>
+  <a href="../iari/" data-i18n="nav.iari">Analisi IARI</a>
+  <a href="../#contatti" data-i18n="nav.contatti">Contatti</a>
 </nav>
 
 <main>
 
   <section class="fade-in">
-    <p class="section-label">Portfolio</p>
-    <h1 class="section-title">Lavori</h1>
-    <p class="section-body">Report economici, dashboard interattive e analisi quantitative su mercati emergenti e dinamiche internazionali.</p>
+    <p class="section-label" data-i18n="lavori.label">Portfolio</p>
+    <h1 class="section-title" data-i18n="lavori.title">Lavori</h1>
+    <p class="section-body" data-i18n="lavori.body">Report economici, dashboard interattive e analisi quantitative su mercati emergenti e dinamiche internazionali.</p>
   </section>
 
   <section class="fade-in">
@@ -49,20 +57,20 @@
       <a href="../argentina/" class="work-card">
         <div class="work-card-body">
           <div class="work-card-meta">
-            <span class="work-tag">Dashboard · Report economico</span>
-            <span class="work-year">2024–2025</span>
+            <span class="work-tag" data-i18n="lavori.card.arg.tag">Dashboard · Report economico</span>
+            <span class="work-year" data-i18n="lavori.card.arg.year">2024–2025</span>
           </div>
-          <h2 class="work-title">Argentina — Il programma Milei</h2>
-          <p class="work-desc">Analisi delle politiche economiche del governo Milei: consolidamento fiscale, politica monetaria, dinamiche del debito e impatto sociale. Dashboard interattiva con dati verificati da fonti primarie — INDEC, FMI, BCRA, Banca Mondiale.</p>
+          <h2 class="work-title" data-i18n="lavori.card.arg.title">Argentina — Il programma Milei</h2>
+          <p class="work-desc" data-i18n="lavori.card.arg.desc">Analisi delle politiche economiche del governo Milei: consolidamento fiscale, politica monetaria, dinamiche del debito e impatto sociale. Dashboard interattiva con dati verificati da fonti primarie — INDEC, FMI, BCRA, Banca Mondiale.</p>
           <div class="work-tags">
-            <span class="work-pill">Macroeconomia</span>
-            <span class="work-pill">Politica monetaria</span>
-            <span class="work-pill">Mercati emergenti</span>
-            <span class="work-pill">America Latina</span>
+            <span class="work-pill" data-i18n="lavori.card.arg.pill1">Macroeconomia</span>
+            <span class="work-pill" data-i18n="lavori.card.arg.pill2">Politica monetaria</span>
+            <span class="work-pill" data-i18n="lavori.card.arg.pill3">Mercati emergenti</span>
+            <span class="work-pill" data-i18n="lavori.card.arg.pill4">America Latina</span>
           </div>
         </div>
         <div class="work-card-footer">
-          <span class="work-link">Apri la dashboard →</span>
+          <span class="work-link" data-i18n="lavori.card.arg.link">Apri la dashboard →</span>
         </div>
       </a>
 
@@ -73,9 +81,12 @@
 
 <footer>
   <span class="footer-name">Vincenzo Ariete</span>
-  <span class="footer-sources">aggiornato · Q1 2026</span>
+  <span class="footer-sources" data-i18n="lavori.footer">aggiornato · Q1 2026</span>
 </footer>
 
+<script src="../js/core/theme.js"></script>
+<script src="../js/translations/translations.js"></script>
+<script src="../js/core/lang.js"></script>
 <script src="../js/core/animations.js"></script>
 
 </body>
