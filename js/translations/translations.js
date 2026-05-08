@@ -29,14 +29,17 @@ const Translations = {
   'home.link.iari': 'All analyses →',
 
   'home.iari.item1.topic': 'Geopolitics · Latin America',
-  'home.iari.item1.title': 'Argentina contesa: litio, riserve e il doppio legame geopolitico',
+  'home.iari.item1.title': 'Contested Argentina: lithium, reserves and the dual geopolitical bond',
   'home.iari.item2.topic': 'International economics',
-  'home.iari.item2.title': 'Dazi USA: la Sezione 122 come strumento di coercizione negoziale',
+  'home.iari.item2.title': 'US Tariffs: Section 122 as an instrument of negotiating coercion',
   'home.iari.item1.date': '18 April 2026',
   'home.iari.item2.date': '21 March 2026',
   'home.iari.item3.topic': 'Geopolitics · Italy · Africa · Energy',
-  'home.iari.item3.title': 'Piano Mattei: cooperazione paritaria e interessi strategici in un\'Africa contesa',
+  'home.iari.item3.title': 'The Mattei Plan: equal partnership cooperation and strategic interests in a contested Africa',
+  'home.iari.item3.date': '8 May 2026',
   'home.iari.coming': 'Coming soon',
+  'home.iari.item4.topic': 'Geopolitics · Russia · War Economy',
+  'home.iari.item4.title': 'Russia under sanctions: between war economy and military trap',
 
   'home.label.contatti': 'Contacts',
   'home.title.contatti': 'Get in touch',
@@ -73,20 +76,26 @@ const Translations = {
 
   'iari.art1.topic': 'Geopolitics · Latin America',
   'iari.art1.date': '18 April 2026',
-  'iari.art1.title': 'Argentina contesa: litio, riserve e il doppio legame geopolitico',
+  'iari.art1.title': 'Contested Argentina: lithium, reserves and the dual geopolitical bond',
   'iari.art1.abstract': 'The analysis of Milei\'s policies reveals a divergence between ideological Atlanticism and geopolitical pragmatism. Despite Argentina aiming for US financial and military support to stabilize its economy, it remains bound to China for swap liquidity and investments in critical infrastructure. Leveraging its strategic contestability — with large lithium reserves and a favorable Atlantic position — the government seeks to maximize the economic benefits of geopolitical triangulation. This strategy is put at risk by internal political fractures and the possibility of a forced decoupling that would transform Argentina from an active actor in the contest to a battleground.',
   'iari.art1.read': 'Read on IARI ↗',
 
   'iari.art2.topic': 'International economics · Trade policy',
   'iari.art2.date': '21 March 2026',
-  'iari.art2.title': 'Dazi USA: la Sezione 122 come strumento di coercizione negoziale',
+  'iari.art2.title': 'US Tariffs: Section 122 as an instrument of negotiating coercion',
   'iari.art2.abstract': 'Section 122 of the Trade Act of 1974 grants the President of the United States the power to impose emergency tariffs of up to 15% on all imports for a period of 150 days, without requiring congressional approval. Historically unused, this provision has returned to the center of debate as a potential pressure instrument in bilateral trade negotiations. The analysis examines the legal scope of the provision, historical precedents and the strategic implications of its possible use in the current context of tariff escalation.',
   'iari.art2.read': 'Read on IARI ↗',
 
   'iari.art3.topic': 'Geopolitics · Italy · Africa · Energy',
-  'iari.art3.title': 'Piano Mattei: cooperazione paritaria e interessi strategici in un\'Africa contesa',
+  'iari.art3.date': '8 May 2026',
+  'iari.art3.title': 'The Mattei Plan: equal partnership cooperation and strategic interests in a contested Africa',
   'iari.art3.abstract': 'The Mattei Plan is embedded in the redefinition of Italian energy security, imposing a repositioning from the Russian to the African front, transforming the need for new supply into a geopolitical projection. Through this plan, Rome aims to enter the African context where Russian and Chinese extractive models are present, offering itself as an alternative through the approach of equal partnership cooperation. The plan\'s stability will depend on Italy\'s ability to convert its geographic position into structural interdependence for Africa. The absence of coercive leverage exposes Italy to the risk of a sunk investment with no strategic return.',
-  'iari.art3.coming': 'Coming soon on IARI',
+  'iari.art3.read': 'Read on IARI ↗',
+
+  'iari.art4.topic': 'Geopolitics · Russia · War Economy',
+  'iari.art4.title': 'Russia under sanctions: between war economy and military trap',
+  'iari.art4.abstract': 'The analysis of Russian economic resilience reveals a divergence between the narrative of economic sovereignty and forced industrial militarization. Despite the war economy having guaranteed Russia immediate stability, the system remains constrained by Asian dependency to compensate for technological shortfalls. This trajectory represents the only residual lever for maintaining geopolitical centrality in the absence of competitive economic and technological relevance. A Russia that is economically weakened but militarily structured constitutes a greater risk for Europe, feeding a permanent tension functional to the regime\'s survival.',
+  'iari.art4.coming': 'Coming soon on IARI',
 
   'iari.footer': 'publications · IARI',
 
