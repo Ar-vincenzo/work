@@ -46,7 +46,7 @@ const Translations = {
   'home.body.contatti': 'For collaborations, questions or simply to write, you can contact me by email.',
   'home.contact.email.label': 'Email',
 
-  'home.footer.updated': 'updated · Q1 2026',
+  'home.footer.updated': 'updated · Q2 2026',
 
   /* ══════════════════════════════════════════
      LAVORI — lavori/index.html
@@ -65,7 +65,7 @@ const Translations = {
   'lavori.card.arg.pill4': 'Latin America',
   'lavori.card.arg.link': 'Open the dashboard →',
 
-  'lavori.footer': 'updated · Q1 2026',
+  'lavori.footer': 'updated · Q2 2026',
 
   /* ══════════════════════════════════════════
      IARI — iari/index.html
