@@ -40,6 +40,7 @@ const Translations = {
   'home.iari.coming': 'Coming soon',
   'home.iari.item4.topic': 'Geopolitics · Russia · War Economy',
   'home.iari.item4.title': 'Russia under sanctions: between war economy and military trap',
+  'home.iari.item4.date': '9 May 2026',
 
   'home.label.contatti': 'Contacts',
   'home.title.contatti': 'Get in touch',
@@ -95,7 +96,8 @@ const Translations = {
   'iari.art4.topic': 'Geopolitics · Russia · War Economy',
   'iari.art4.title': 'Russia under sanctions: between war economy and military trap',
   'iari.art4.abstract': 'The analysis of Russian economic resilience reveals a divergence between the narrative of economic sovereignty and forced industrial militarization. Despite the war economy having guaranteed Russia immediate stability, the system remains constrained by Asian dependency to compensate for technological shortfalls. This trajectory represents the only residual lever for maintaining geopolitical centrality in the absence of competitive economic and technological relevance. A Russia that is economically weakened but militarily structured constitutes a greater risk for Europe, feeding a permanent tension functional to the regime\'s survival.',
-  'iari.art4.coming': 'Coming soon on IARI',
+  'iari.art4.date': '9 May 2026',
+  'iari.art4.read': 'Read on IARI ↗',
 
   'iari.footer': 'publications · IARI',
 
